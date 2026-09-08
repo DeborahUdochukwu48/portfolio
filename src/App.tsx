@@ -1,4 +1,4 @@
-import { type ReactNode, useEffect, useState } from 'react'
+import { type ReactNode, useEffect, useRef, useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { CursorFollower } from './CursorFollower'
 import {
@@ -31,6 +31,7 @@ function HoverLink({
   target,
   rel,
   download,
+  onClick,
 }: {
   href: string
   children: ReactNode
@@ -38,6 +39,7 @@ function HoverLink({
   target?: string
   rel?: string
   download?: boolean | string
+  onClick?: () => void
 }) {
   const reduce = useReducedMotion()
   return (
@@ -47,6 +49,7 @@ function HoverLink({
       target={target}
       rel={rel}
       download={download}
+      onClick={onClick}
       whileHover={reduce ? undefined : { y: -1 }}
       transition={{ duration: 0.2, ease }}
     >
@@ -57,6 +60,7 @@ function HoverLink({
 
 function Navbar() {
   const [open, setOpen] = useState(false)
+  const menuRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     function onKey(event: KeyboardEvent) {
@@ -68,11 +72,20 @@ function Navbar() {
       if (desktop.matches) setOpen(false)
     }
 
+    function onMenuClick(event: Event) {
+      const node = event.target
+      const el = node instanceof Element ? node : (node as Node).parentElement
+      if (el?.closest('a')) setOpen(false)
+    }
+
     window.addEventListener('keydown', onKey)
     desktop.addEventListener('change', onViewport)
+    const menu = menuRef.current
+    menu?.addEventListener('click', onMenuClick)
     return () => {
       window.removeEventListener('keydown', onKey)
       desktop.removeEventListener('change', onViewport)
+      menu?.removeEventListener('click', onMenuClick)
     }
   }, [])
 
@@ -95,20 +108,33 @@ function Navbar() {
         <span />
       </button>
       <nav
+        ref={menuRef}
         id="primary-nav"
         className={open ? 'nav-links is-open' : 'nav-links'}
         aria-label="Primary"
-        onClick={(event) => {
-          if ((event.target as HTMLElement).closest('a')) setOpen(false)
-        }}
       >
-        <HoverLink href="#projects">Work</HoverLink>
-        <HoverLink href={LINKS.linkedin} target="_blank" rel="noreferrer">
+        <HoverLink href="#projects" onClick={() => setOpen(false)}>
+          Work
+        </HoverLink>
+        <HoverLink
+          href={LINKS.linkedin}
+          target="_blank"
+          rel="noreferrer"
+          onClick={() => setOpen(false)}
+        >
           Linkedin
         </HoverLink>
-        <HoverLink href="#about">About me</HoverLink>
-        <HoverLink href="#contact">Contact</HoverLink>
-        <HoverLink href={LINKS.cv} download="CV_Deborah_Amajuoyi.docx">
+        <HoverLink href="#about" onClick={() => setOpen(false)}>
+          About me
+        </HoverLink>
+        <HoverLink href="#contact" onClick={() => setOpen(false)}>
+          Contact
+        </HoverLink>
+        <HoverLink
+          href={LINKS.cv}
+          download="CV_Deborah_Amajuoyi.docx"
+          onClick={() => setOpen(false)}
+        >
           CV
         </HoverLink>
       </nav>
