@@ -56,13 +56,52 @@ function HoverLink({
 }
 
 function Navbar() {
+  const [open, setOpen] = useState(false)
+
+  useEffect(() => {
+    function onKey(event: KeyboardEvent) {
+      if (event.key === 'Escape') setOpen(false)
+    }
+
+    const desktop = window.matchMedia('(min-width: 801px)')
+    function onViewport() {
+      if (desktop.matches) setOpen(false)
+    }
+
+    window.addEventListener('keydown', onKey)
+    desktop.addEventListener('change', onViewport)
+    return () => {
+      window.removeEventListener('keydown', onKey)
+      desktop.removeEventListener('change', onViewport)
+    }
+  }, [])
+
   return (
     <header className="nav">
-      <a className="brand" href="#hero">
+      <a className="brand" href="#hero" onClick={() => setOpen(false)}>
         <BrandMark />
         Deborah
       </a>
-      <nav className="nav-links" aria-label="Primary">
+      <button
+        type="button"
+        className={open ? 'nav-toggle is-open' : 'nav-toggle'}
+        aria-expanded={open}
+        aria-controls="primary-nav"
+        aria-label={open ? 'Close menu' : 'Open menu'}
+        onClick={() => setOpen((value) => !value)}
+      >
+        <span />
+        <span />
+        <span />
+      </button>
+      <nav
+        id="primary-nav"
+        className={open ? 'nav-links is-open' : 'nav-links'}
+        aria-label="Primary"
+        onClick={(event) => {
+          if ((event.target as HTMLElement).closest('a')) setOpen(false)
+        }}
+      >
         <HoverLink href="#projects">Work</HoverLink>
         <HoverLink href={LINKS.linkedin} target="_blank" rel="noreferrer">
           Linkedin
