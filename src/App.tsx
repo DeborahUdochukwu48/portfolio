@@ -1,430 +1,680 @@
-import { useEffect, useMemo, useState } from 'react'
+import { type ReactNode, useEffect, useState } from 'react'
+import { motion, useReducedMotion } from 'framer-motion'
+import { CursorFollower } from './CursorFollower'
+import {
+  ArrowOut,
+  BrandMark,
+  ChevronDown,
+  ChevronUp,
+  CompetencyIcon,
+  MouseIcon,
+  PinIcon,
+} from './icons'
+import { MotionCard, Reveal } from './motion'
+import { SynergyMap } from './SynergyMap'
+import {
+  COMMUNITY,
+  COMPETENCIES,
+  EDUCATION,
+  EXPERIENCE,
+  GALLERY,
+  LINKS,
+  TESTIMONIALS,
+} from './content'
 
-type Tab = 'home' | 'activity' | 'robot' | 'you'
-type Screen = 'splash' | 'onboard' | 'app'
-type Actor = 'R1' | 'You'
+const ease = [0.22, 1, 0.36, 1] as const
 
-type Room = {
-  chair: 'window' | 'tv'
-  lampOn: boolean
-  mugs: number
-  throwOn: 'folded' | 'draped'
-  books: 'shelf' | 'floor'
-}
-
-type Change = {
-  id: string
-  actor: Actor
-  title: string
-  detail: string
-  time: string
-  apply: (room: Room) => Room
-}
-
-const BASELINE: Room = {
-  chair: 'window',
-  lampOn: false,
-  mugs: 0,
-  throwOn: 'folded',
-  books: 'shelf',
-}
-
-const STARTER: Change[] = [
-  {
-    id: '1',
-    actor: 'R1',
-    title: 'Moved the armchair',
-    detail: 'Window nook → facing the TV',
-    time: '7:12 PM',
-    apply: (room) => ({ ...room, chair: 'tv' }),
-  },
-  {
-    id: '2',
-    actor: 'R1',
-    title: 'Turned the floor lamp on',
-    detail: 'Living room, movie lighting',
-    time: '7:14 PM',
-    apply: (room) => ({ ...room, lampOn: true }),
-  },
-  {
-    id: '3',
-    actor: 'You',
-    title: 'Left mugs on the table',
-    detail: 'Two coffee mugs after work',
-    time: '8:01 PM',
-    apply: (room) => ({ ...room, mugs: 2 }),
-  },
-  {
-    id: '4',
-    actor: 'R1',
-    title: 'Draped the throw',
-    detail: 'Sofa, evening setup',
-    time: '8:06 PM',
-    apply: (room) => ({ ...room, throwOn: 'draped' }),
-  },
-]
-
-const MESS_PRESETS: Omit<Change, 'id' | 'time'>[] = [
-  {
-    actor: 'You',
-    title: 'Knocked books onto the floor',
-    detail: 'Coffee table pile, living room',
-    apply: (room) => ({ ...room, books: 'floor' }),
-  },
-  {
-    actor: 'You',
-    title: 'Dragged the chair back',
-    detail: 'TV → window nook',
-    apply: (room) => ({ ...room, chair: 'window' }),
-  },
-  {
-    actor: 'You',
-    title: 'Switched the lamp off',
-    detail: 'Living room went dark',
-    apply: (room) => ({ ...room, lampOn: false }),
-  },
-]
-
-function applyStack(changes: Change[], cursor: number): Room {
-  return changes.slice(0, cursor).reduce((room, change) => change.apply(room), BASELINE)
-}
-
-function RobotMark({ size = 180 }: { size?: number }) {
+function HoverLink({
+  href,
+  children,
+  className,
+  target,
+  rel,
+  download,
+}: {
+  href: string
+  children: ReactNode
+  className?: string
+  target?: string
+  rel?: string
+  download?: boolean | string
+}) {
+  const reduce = useReducedMotion()
   return (
-    <svg width={size} height={size} viewBox="0 0 180 180" fill="none" aria-hidden>
-      <circle cx="90" cy="90" r="70" fill="#15213a" />
-      <rect x="58" y="40" width="64" height="78" rx="22" fill="url(#g)" />
-      <rect x="70" y="62" width="40" height="18" rx="9" fill="#0b1220" />
-      <circle cx="80" cy="71" r="4" fill="#3d7cff" />
-      <circle cx="100" cy="71" r="4" fill="#3d7cff" />
-      <rect x="78" y="86" width="24" height="6" rx="3" fill="#8b97b0" />
-      <rect x="48" y="70" width="12" height="36" rx="6" fill="#cfd6e6" />
-      <rect x="120" y="70" width="12" height="36" rx="6" fill="#cfd6e6" />
-      <rect x="72" y="118" width="14" height="28" rx="7" fill="#9aa7c2" />
-      <rect x="94" y="118" width="14" height="28" rx="7" fill="#9aa7c2" />
-      <defs>
-        <linearGradient id="g" x1="58" y1="40" x2="122" y2="118">
-          <stop stopColor="#f4f7ff" />
-          <stop offset="1" stopColor="#9eb0cc" />
-        </linearGradient>
-      </defs>
-    </svg>
+    <motion.a
+      href={href}
+      className={className}
+      target={target}
+      rel={rel}
+      download={download}
+      whileHover={reduce ? undefined : { y: -1 }}
+      transition={{ duration: 0.2, ease }}
+    >
+      {children}
+    </motion.a>
   )
 }
 
-function RoomView({ room, busy }: { room: Room; busy: boolean }) {
+function Navbar() {
   return (
-    <div className="room" aria-label="Living room state">
-      <div className="window" />
-      <div className="tv" />
-      <div className={`books ${room.books}`} />
-      <div className={`chair ${room.chair}`} />
-      <div className="sofa" />
-      <div className={`throw ${room.throwOn}`} />
-      <div className="table" />
-      {Array.from({ length: room.mugs }).map((_, i) => (
-        <div key={i} className="mug" style={{ left: 32 + i * 16 }} />
-      ))}
-      <div className={`lamp ${room.lampOn ? 'on' : ''}`}>
-        <div className="shade" />
+    <header className="nav">
+      <a className="brand" href="#hero">
+        <BrandMark />
+        Deborah
+      </a>
+      <nav className="nav-links" aria-label="Primary">
+        <HoverLink href="#projects">Work</HoverLink>
+        <HoverLink href={LINKS.linkedin} target="_blank" rel="noreferrer">
+          Linkedin
+        </HoverLink>
+        <HoverLink href="#about">About me</HoverLink>
+        <HoverLink href="#contact">Contact</HoverLink>
+        <HoverLink href={LINKS.cv} download="CV_Deborah_Amajuoyi.docx">
+          CV
+        </HoverLink>
+      </nav>
+    </header>
+  )
+}
+
+function Hero() {
+  const reduce = useReducedMotion()
+  const enter = reduce
+    ? undefined
+    : { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }
+
+  return (
+    <section className="hero" id="hero">
+      <div className="hero-glow" />
+      <motion.div
+        className="identity"
+        initial={enter ? 'hidden' : false}
+        animate="show"
+        variants={enter}
+        transition={{ duration: 0.5, ease }}
+      >
+        <img src="/images/logo-d.png" alt="" />
+        <span>Amajuoyi Udochukwu Deborah</span>
+      </motion.div>
+      <motion.h1
+        initial={enter ? 'hidden' : false}
+        animate="show"
+        variants={enter}
+        transition={{ duration: 0.6, delay: 0.08, ease }}
+      >
+        Strategic <span>Product</span>
+        <br />
+        Manager
+      </motion.h1>
+      <motion.p
+        className="lede"
+        initial={enter ? 'hidden' : false}
+        animate="show"
+        variants={enter}
+        transition={{ duration: 0.55, delay: 0.16, ease }}
+      >
+        Hi, I&apos;m Deborah, a Senior Product Manager with a strong design background. I combine
+        ideation, product strategy, and detailed execution to build scalable products that drive
+        real value.
+      </motion.p>
+      <motion.a
+        className="btn-glow"
+        href="#projects"
+        initial={enter ? 'hidden' : false}
+        animate="show"
+        variants={enter}
+        transition={{ duration: 0.5, delay: 0.24, ease }}
+        whileHover={reduce ? undefined : { scale: 1.04 }}
+        whileTap={reduce ? undefined : { scale: 0.98 }}
+      >
+        View my works
+      </motion.a>
+
+      <Reveal className="stats-card" delay={0.12}>
+        <div className="stats-row">
+          <div className="stat-cell">
+            <strong>0-1</strong>
+            <span>
+              Proven Track Record
+              <br />
+              Shipping Complex Products
+            </span>
+          </div>
+          <div className="stat-cell">
+            <strong>5+</strong>
+            <span>
+              Large Scale Apps
+              <br />
+              to Market
+            </span>
+          </div>
+          <div className="stat-cell">
+            <strong>150+</strong>
+            <span>
+              Managers, Designers
+              <br />
+              &amp; Stakeholders Supported
+            </span>
+          </div>
+          <div className="stat-cell">
+            <strong>Msc</strong>
+            <span>
+              Information Tech.
+              <br />
+              from AIU
+            </span>
+          </div>
+        </div>
+        <p className="companies-label">Companies I&apos;ve worked with</p>
+        <div className="logo-row">
+          <img src="/images/logo-vw.png" alt="Volkswagen" />
+          <img src="/images/logo-seat.png" alt="SEAT" />
+          <img src="/images/logo-cupra.png" alt="CUPRA" />
+          <img src="/images/logo-skoda.png" alt="Škoda" />
+          <span className="plus" aria-hidden>
+            +
+          </span>
+        </div>
+      </Reveal>
+
+      <div className="scroll-row">
+        <span>Scroll down</span>
+        <span className="scroll-line" />
+        <MouseIcon />
+        <span className="scroll-line" />
+        <span>to see projects</span>
       </div>
-      <div className={`robot ${busy ? 'busy' : ''}`} />
+    </section>
+  )
+}
+
+function Strategy() {
+  return (
+    <section className="section strategy-section">
+      <div className="section-split">
+        <Reveal>
+          <h2>Where Strategy Meets Experience</h2>
+          <p>
+            I treat product strategy, UX design, research, and business growth as one connected
+            system. Product strategy gives direction, data validates it, and design makes it usable,
+            research keeps all of it honest, and growth tells me whether any of it actually worked.
+          </p>
+          <p>
+            No framework fits every problem, and no two companies work the same way. So rather than
+            force-fitting a process, I adapt how I show up, partnering with you across three
+            distinct roles, from framing the problem to landing the solution.
+          </p>
+        </Reveal>
+      </div>
+
+      <Reveal className="flow-wrap" delay={0.08}>
+        <SynergyMap />
+      </Reveal>
+    </section>
+  )
+}
+
+function Competencies() {
+  return (
+    <section className="section">
+      <Reveal>
+        <h2>Core Competencies</h2>
+      </Reveal>
+      <div className="comp-grid">
+        {COMPETENCIES.map((item, index) => (
+          <MotionCard key={item.title} className="comp-card" delay={index * 0.06}>
+            <h3>{item.title}</h3>
+            <CompetencyIcon name={item.icon} />
+            <p>{item.body}</p>
+          </MotionCard>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+function PhoneFrame({
+  src,
+  alt,
+  video = false,
+}: {
+  src: string
+  alt: string
+  video?: boolean
+}) {
+  return (
+    <div className="phone-frame">
+      {video ? (
+          <video src={src} autoPlay muted loop playsInline aria-label={alt} />
+        ) : (
+          <img src={src} alt={alt} />
+        )}
     </div>
   )
 }
 
-export default function App() {
-  const [screen, setScreen] = useState<Screen>('splash')
-  const [onboardStep, setOnboardStep] = useState(0)
-  const [tab, setTab] = useState<Tab>('home')
-  const [changes, setChanges] = useState<Change[]>(STARTER)
-  const [cursor, setCursor] = useState(STARTER.length)
-  const [busy, setBusy] = useState<string | null>(null)
+function Works() {
+  const reduce = useReducedMotion()
+  return (
+    <section className="section" id="projects">
+      <Reveal>
+        <h2>Selected Works</h2>
+      </Reveal>
 
-  const room = useMemo(() => applyStack(changes, cursor), [changes, cursor])
-  const last = cursor > 0 ? changes[cursor - 1] : null
-  const canUndo = cursor > 0 && !busy
-  const canRedo = cursor < changes.length && !busy
+      <MotionCard className="work-card">
+        <div className="work-copy">
+          <p className="work-brand">
+            <img src="/images/logo-vw.png" alt="" />
+            Volkswagen AG
+          </p>
+          <h3>Vehicle Activation Service</h3>
+          <p>
+            Led design and delivery of the core enrollment experience across four VW Group brands,
+            simplifying vehicle onboarding and digital feature activation for primary and guest
+            users.
+          </p>
+          <p className="impact-label">Impact</p>
+          <ul>
+            <li>Significantly reduced time-to-value during initial vehicle activation.</li>
+            <li>Meaningfully decreased onboarding drop-off by simplifying the activation path.</li>
+            <li>Scaled across millions of model year 2020+ vehicles nationwide.</li>
+          </ul>
+          <motion.a
+            className="btn-ghost"
+            href={LINKS.vwLive}
+            target="_blank"
+            rel="noreferrer"
+            whileHover={reduce ? undefined : { scale: 1.04 }}
+          >
+            View Live <ArrowOut />
+          </motion.a>
+        </div>
+        <div className="work-media">
+          <div className="phones single pair">
+            <PhoneFrame src="/images/work-vw.png" alt="VW Connect services and security PIN screens" />
+          </div>
+        </div>
+      </MotionCard>
 
-  function runRobot(label: string, work: () => void) {
-    setBusy(label)
-    window.setTimeout(() => {
-      work()
-      setBusy(null)
-    }, 2200)
-  }
+      <MotionCard className="work-card" delay={0.06}>
+        <div className="work-copy">
+          <p className="work-brand">
+            <img src="/images/logo-skoda.png" alt="" />
+            My Škoda
+          </p>
+          <h3>Vehicle Onboarding &amp; User Activation</h3>
+          <p>
+            Redesigned the vehicle onboarding and activation flow: prototyping in Figma and
+            designing separate primary/guest user paths to eliminate friction from first-time
+            account setup.
+          </p>
+          <p className="impact-label">Impact</p>
+          <ul>
+            <li>Significantly improved first-run activation completion rates for new Škoda owners.</li>
+          </ul>
+          <motion.a
+            className="btn-ghost"
+            href={LINKS.skodaLive}
+            target="_blank"
+            rel="noreferrer"
+            whileHover={reduce ? undefined : { scale: 1.04 }}
+          >
+            View Live <ArrowOut />
+          </motion.a>
+        </div>
+        <div className="work-media teal">
+          <div className="phones single pair">
+            <PhoneFrame
+              src="/images/work-skoda.png"
+              alt="ŠKODA Connect activation and service packages screens"
+            />
+          </div>
+        </div>
+      </MotionCard>
 
-  function undo() {
-    if (!canUndo || !last) return
-    runRobot(`Reversing: ${last.title.toLowerCase()}`, () => setCursor((c) => c - 1))
-  }
+      <MotionCard className="work-card" delay={0.08}>
+        <div className="work-copy">
+          <p className="work-brand">
+            <img className="wordmark" src="/images/logo-reversal.png" alt="" />
+            Reversal
+          </p>
+          <h3 className="reversal-title">
+            Reversal - An Autonomous Humanoid Aid Performing Physical Command Z Function In Your
+            Space.
+          </h3>
+          <p>
+            A home humanoid whose core value isn&apos;t doing chores for you, it&apos;s
+            reversibility. When something goes wrong (spilled, knocked over, left open, put in the
+            wrong place), it undoes it.
+          </p>
+          <motion.a
+            className="btn-ghost"
+            href={LINKS.reversalCase}
+            target="_blank"
+            rel="noreferrer"
+            whileHover={reduce ? undefined : { scale: 1.04 }}
+          >
+            View Case Study <ArrowOut />
+          </motion.a>
+        </div>
+        <div className="work-media purple">
+          <div className="phones single">
+            <PhoneFrame src="/images/reversal.mp4" alt="Reversal scanning interface" video />
+          </div>
+        </div>
+      </MotionCard>
 
-  function redo() {
-    if (!canRedo) return
-    const next = changes[cursor]
-    runRobot(`Replaying: ${next.title.toLowerCase()}`, () => setCursor((c) => c + 1))
-  }
+      <MotionCard className="work-card" delay={0.1}>
+        <div className="work-copy">
+          <p className="work-brand">
+            <img className="wordmark kladot" src="/images/logo-kladot.png" alt="" />
+            Kladot
+          </p>
+          <h3>Kladot - A Digital Banking Platform</h3>
+          <p>
+            Kladot is a digital banking platform that enables migrants, expatriates and global
+            citizens to access multi-currency, Group Savings, Send, Receive, Payment, Investment,
+            Loan, Debit Card and Convert cash instantly from their phone. KlaDot Inc. has already
+            acquired Money services business license in USA and Canada.
+          </p>
+          <motion.a
+            className="btn-ghost"
+            href={LINKS.kladotCase}
+            target="_blank"
+            rel="noreferrer"
+            whileHover={reduce ? undefined : { scale: 1.04 }}
+          >
+            View Case Study <ArrowOut />
+          </motion.a>
+        </div>
+        <div className="work-media">
+          <div className="phones single">
+            <PhoneFrame src="/images/kladot-collage.png" alt="Kladot app screens" />
+          </div>
+        </div>
+      </MotionCard>
 
-  function mess(preset: Omit<Change, 'id' | 'time'>) {
-    const next: Change = {
-      ...preset,
-      id: crypto.randomUUID(),
-      time: 'Just now',
-    }
-    setChanges((list) => [...list.slice(0, cursor), next])
-    setCursor((c) => c + 1)
-    setTab('home')
-  }
+      <Reveal>
+        <a className="see-more" href={LINKS.medium} target="_blank" rel="noreferrer">
+          See More
+        </a>
+      </Reveal>
+    </section>
+  )
+}
+
+function About() {
+  const reduce = useReducedMotion()
+  return (
+    <section className="section" id="about">
+      <Reveal>
+        <h2>Amajuoyi Udochukwu Deborah</h2>
+        <p className="about-bio">
+          Hi, I&apos;m Deborah. I&apos;m a Senior Product Manager with deep experience leading B2B,
+          B2C, D2C, and platform products, paired with a strong background in design. I turn messy
+          business problems and technical constraints into products people actually want to
+          use, backed by real research and data, not just gut feel.
+        </p>
+      </Reveal>
+      <div className="gallery">
+        {GALLERY.map((item, index) => (
+          <motion.figure
+            key={item.src}
+            initial={reduce ? false : { opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{ duration: 0.5, delay: index * 0.07, ease }}
+            whileHover={reduce ? undefined : { y: -6, scale: 1.02 }}
+          >
+            <img src={item.src} alt={item.caption} />
+            <figcaption>
+              <strong>{item.title}</strong>
+              <span>{item.caption}</span>
+            </figcaption>
+          </motion.figure>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+function Impact() {
+  return (
+    <section className="section">
+      <Reveal>
+        <h2>A Quick Look at My Impact</h2>
+      </Reveal>
+      <Reveal className="impact-card">
+        <div className="stats-row impact-stats">
+          <div className="stat-cell">
+            <strong>0-1</strong>
+            <span>
+              Proven Track Record
+              <br />
+              Shipping Complex Products
+            </span>
+          </div>
+          <div className="stat-cell">
+            <strong>150+</strong>
+            <span>
+              Managers, Designers
+              <br />
+              &amp; Stakeholders Supported
+            </span>
+          </div>
+          <div className="stat-cell">
+            <strong>1000+</strong>
+            <span>
+              People in my Community
+              <br />
+              IxDA and beyond
+            </span>
+          </div>
+          <div className="stat-cell">
+            <strong>10+</strong>
+            <span>
+              Speaking Engagements
+              <br />
+              at Tech Events
+            </span>
+          </div>
+        </div>
+        <div className="impact-cols">
+          <div>
+            <h4>Experience</h4>
+            {EXPERIENCE.map((job) => (
+              <div key={job.role + job.dates} className="resume-item">
+                <strong>{job.company}</strong>
+                <span>{job.role}</span>
+                <span>{job.dates}</span>
+                <span className="loc">
+                  <PinIcon /> {job.location}
+                </span>
+              </div>
+            ))}
+          </div>
+          <div>
+            <h4>Education</h4>
+            {EDUCATION.map((ed) => (
+              <div key={ed.school} className="resume-item">
+                <strong>{ed.school}</strong>
+                <span>{ed.degree}</span>
+                <span>{ed.detail}</span>
+                <span className="loc">
+                  <PinIcon /> {ed.location}
+                </span>
+              </div>
+            ))}
+            <h4>Languages</h4>
+            <p className="plain-list">
+              English
+              <br />
+              French
+              <br />
+              German
+            </p>
+            <h4>Writing</h4>
+            <p className="writing">
+              write on product design, PM, and process across{' '}
+              <a href={LINKS.linkedin} target="_blank" rel="noreferrer">
+                LinkedIn
+              </a>
+              ,{' '}
+              <a href={LINKS.x} target="_blank" rel="noreferrer">
+                X
+              </a>
+              , and{' '}
+              <a href={LINKS.medium} target="_blank" rel="noreferrer">
+                Medium
+              </a>
+              .
+            </p>
+          </div>
+          <div>
+            <h4>Community, Speaking, &amp; Mentorship</h4>
+            {COMMUNITY.map((item) => (
+              <div key={item.org} className="resume-item">
+                <strong>{item.org}</strong>
+                <span>{item.role}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Reveal>
+    </section>
+  )
+}
+
+function Testimonials() {
+  return (
+    <section className="section">
+      <Reveal>
+        <h2>What People Say</h2>
+      </Reveal>
+      <div className="quotes">
+        {TESTIMONIALS.map((item, index) => {
+          const name = item.href ? (
+            <a href={item.href} target="_blank" rel="noreferrer">
+              {item.name}
+            </a>
+          ) : (
+            item.name
+          )
+          return (
+            <MotionCard key={item.name} className="quote-card" delay={index * 0.08}>
+              <header>
+                <img src={item.avatar} alt="" />
+                <div>
+                  <strong>{name}</strong>
+                  <span>{item.role}</span>
+                </div>
+              </header>
+              <p>{item.quote}</p>
+            </MotionCard>
+          )
+        })}
+      </div>
+    </section>
+  )
+}
+
+function Footer() {
+  const reduce = useReducedMotion()
+  return (
+    <footer className="footer" id="contact">
+      <div className="footer-glow" />
+      <Reveal>
+        <h2>Let&apos;s make positive impact together!</h2>
+        <p>I&apos;m eager to embrace fresh challenges and collaborate with you to build something extraordinary.</p>
+        <motion.a
+          className="btn-glow"
+          href={LINKS.email}
+          whileHover={reduce ? undefined : { scale: 1.05 }}
+          whileTap={reduce ? undefined : { scale: 0.98 }}
+        >
+          Contact Deborah
+        </motion.a>
+      </Reveal>
+      <div className="socials">
+        <a href={LINKS.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+          </svg>
+        </a>
+        <span />
+        <a href={LINKS.medium} target="_blank" rel="noreferrer" aria-label="Medium">
+          <svg width="22" height="14" viewBox="0 0 24 14" fill="currentColor">
+            <ellipse cx="7" cy="7" rx="7" ry="7" />
+            <ellipse cx="17.2" cy="7" rx="3.2" ry="6.5" />
+            <ellipse cx="22.4" cy="7" rx="1.4" ry="5.8" />
+          </svg>
+        </a>
+        <span />
+        <a href={LINKS.x} target="_blank" rel="noreferrer" aria-label="X">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.743l7.727-8.835L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+          </svg>
+        </a>
+      </div>
+    </footer>
+  )
+}
+
+function ScrollRail() {
+  const reduce = useReducedMotion()
+  const [atTop, setAtTop] = useState(true)
 
   useEffect(() => {
-    function onKey(event: KeyboardEvent) {
-      if (!(event.metaKey || event.ctrlKey) || event.key.toLowerCase() !== 'z') return
-      event.preventDefault()
-      if (event.shiftKey) redo()
-      else undo()
+    function update() {
+      setAtTop(window.scrollY < 48)
     }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [canUndo, canRedo, last, cursor, busy, changes])
 
-  const onboard = [
-    {
-      kicker: 'Humanoid intelligence',
-      title: 'Cmd+Z for the living room.',
-      body: 'R1 watches what changes in your space — then walks it back when you undo.',
-    },
-    {
-      kicker: 'One assumption',
-      title: 'Would you tap Undo on the real world?',
-      body: 'This prototype tests that, not robot hardware. Make a mess, then reverse it.',
-    },
-    {
-      kicker: 'Ready',
-      title: 'Your living room, with a rewind.',
-      body: 'The last physical change sits on a stack. Undo sends R1 to restore it.',
-    },
-  ][onboardStep]
+    update()
+    window.addEventListener('scroll', update, { passive: true })
+    window.addEventListener('resize', update)
+    return () => {
+      window.removeEventListener('scroll', update)
+      window.removeEventListener('resize', update)
+    }
+  }, [])
+
+  const behavior: ScrollBehavior = reduce ? 'auto' : 'smooth'
 
   return (
-    <div className="app-shell">
-      <div className="phone">
-        {screen === 'splash' && (
-          <section className="screen splash">
-            <div className="robot-hero">
-              <RobotMark />
-            </div>
-            <p className="kicker">Reversal</p>
-            <h1 style={{ margin: '10px 0 12px' }}>Undo for the real world.</h1>
-            <p className="muted">
-              A humanoid that treats your home like a document — with Command Z.
-            </p>
-            <button className="primary" style={{ marginTop: 28 }} onClick={() => setScreen('onboard')}>
-              Get started
-            </button>
-          </section>
-        )}
+    <nav className="scroll-rail" aria-label="Page scroll">
+      <button
+        type="button"
+        className="scroll-rail-btn"
+        aria-label={atTop ? 'Scroll down' : 'Back to top'}
+        onClick={() =>
+          window.scrollTo({
+            top: atTop ? window.scrollY + window.innerHeight * 0.9 : 0,
+            behavior,
+          })
+        }
+      >
+        {atTop ? <ChevronDown /> : <ChevronUp />}
+      </button>
+    </nav>
+  )
+}
 
-        {screen === 'onboard' && (
-          <section className="screen onboard">
-            <div className="robot-hero">
-              <RobotMark size={160} />
-            </div>
-            <p className="kicker">{onboard.kicker}</p>
-            <h1 style={{ margin: '10px 0 12px' }}>{onboard.title}</h1>
-            <p className="muted">{onboard.body}</p>
-            <div className="dots">
-              {[0, 1, 2].map((i) => (
-                <span key={i} className={i === onboardStep ? 'on' : ''} />
-              ))}
-            </div>
-            <button
-              className="primary"
-              onClick={() => {
-                if (onboardStep < 2) setOnboardStep((s) => s + 1)
-                else setScreen('app')
-              }}
-            >
-              {onboardStep < 2 ? 'Next' : 'Open living room'}
-            </button>
-            <button className="ghost" onClick={() => setScreen('app')}>
-              Skip
-            </button>
-          </section>
-        )}
-
-        {screen === 'app' && (
-          <>
-            <section className="screen">
-              {tab === 'home' && (
-                <>
-                  <div className="row">
-                    <div>
-                      <p className="kicker">Living room</p>
-                      <h2 style={{ marginTop: 4 }}>Tonight’s stack</h2>
-                    </div>
-                    <span className="status-pill">
-                      <span className={`dot ${busy ? 'busy' : ''}`} />
-                      {busy ? 'R1 working' : 'R1 idle'}
-                    </span>
-                  </div>
-                  <RoomView room={room} busy={Boolean(busy)} />
-                  <div className="card">
-                    <p className="muted" style={{ fontSize: 12, fontWeight: 600 }}>
-                      LAST CHANGE
-                    </p>
-                    <h3 style={{ marginTop: 6 }}>{last ? last.title : 'Room is at baseline'}</h3>
-                    <p className="muted" style={{ marginTop: 4 }}>
-                      {last ? `${last.actor} · ${last.detail}` : 'Nothing left to reverse.'}
-                    </p>
-                  </div>
-                  <button className="undo-btn" onClick={undo} disabled={!canUndo}>
-                    ⌘Z  Undo last change
-                  </button>
-                  <button className="ghost" onClick={redo} disabled={!canRedo}>
-                    Redo
-                  </button>
-                  <p className="hint">Keyboard: ⌘Z / ⌘⇧Z — same as the product idea.</p>
-                </>
-              )}
-
-              {tab === 'activity' && (
-                <>
-                  <p className="kicker">Activity</p>
-                  <h2 style={{ margin: '6px 0 14px' }}>Physical history</h2>
-                  <div className="card">
-                    {changes.map((change, index) => {
-                      const undone = index >= cursor
-                      const isTop = index === cursor - 1
-                      return (
-                        <div key={change.id} className={`event ${undone ? 'undone' : ''}`}>
-                          <div className="avatar">{change.actor === 'R1' ? '🤖' : '👤'}</div>
-                          <div>
-                            <strong>{change.title}</strong>
-                            <p className="muted" style={{ fontSize: 13, marginTop: 2 }}>
-                              {change.actor} · {change.time}
-                              {undone ? ' · undone' : ''}
-                            </p>
-                          </div>
-                          {isTop ? (
-                            <button className="mini" onClick={undo} disabled={!canUndo}>
-                              Undo
-                            </button>
-                          ) : undone && index === cursor ? (
-                            <button className="mini redo" onClick={redo} disabled={!canRedo}>
-                              Redo
-                            </button>
-                          ) : (
-                            <span className="muted" style={{ fontSize: 12 }}>
-                              {index + 1}
-                            </span>
-                          )}
-                        </div>
-                      )
-                    })}
-                  </div>
-                  <p className="muted" style={{ marginTop: 12, fontSize: 13 }}>
-                    Undo is a stack, like documents — R1 only reverses the latest living-space change.
-                  </p>
-                </>
-              )}
-
-              {tab === 'robot' && (
-                <>
-                  <p className="kicker">Humanoid</p>
-                  <h2 style={{ margin: '6px 0 8px' }}>R1 · living room</h2>
-                  <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <RobotMark size={150} />
-                  </div>
-                  <div className="row" style={{ gap: 10, marginTop: 8 }}>
-                    <div className="stat">
-                      <span className="muted">Status</span>
-                      <b>{busy ? 'Reversing' : 'Idle'}</b>
-                    </div>
-                    <div className="stat">
-                      <span className="muted">Stack</span>
-                      <b>
-                        {cursor}/{changes.length}
-                      </b>
-                    </div>
-                  </div>
-                  <div className="card" style={{ marginTop: 12 }}>
-                    <p className="muted" style={{ fontSize: 12, fontWeight: 600 }}>
-                      SIMULATE LIFE
-                    </p>
-                    <p style={{ margin: '8px 0 4px' }}>Make a mess, then undo it.</p>
-                    <p className="muted" style={{ fontSize: 13 }}>
-                      This is the experiment: do you reach for Command Z instead of fixing it yourself?
-                    </p>
-                    <div className="chip-row">
-                      {MESS_PRESETS.map((preset) => (
-                        <button key={preset.title} className="chip" onClick={() => mess(preset)}>
-                          {preset.title}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                </>
-              )}
-
-              {tab === 'you' && (
-                <>
-                  <p className="kicker">Prototype</p>
-                  <h2 style={{ margin: '6px 0 14px' }}>What we’re testing</h2>
-                  <div className="card">
-                    <p>
-                      <strong>Assumption:</strong> people will undo physical home changes through a
-                      humanoid the same way they hit Cmd+Z on a laptop.
-                    </p>
-                    <p className="muted" style={{ marginTop: 10 }}>
-                      Out of scope for this version: real robots, accounts, multi-room homes, and
-                      device APIs. The room is a simulation so the undo loop is real.
-                    </p>
-                  </div>
-                  <div className="card" style={{ marginTop: 12 }}>
-                    <p className="muted" style={{ fontSize: 12, fontWeight: 600 }}>
-                      SUCCESS LOOKS LIKE
-                    </p>
-                    <p style={{ marginTop: 8 }}>
-                      You mess the room, tap ⌘Z, and wait for R1 instead of dragging the chair
-                      yourself.
-                    </p>
-                  </div>
-                </>
-              )}
-            </section>
-
-            <nav className="nav">
-              {(
-                [
-                  ['home', 'Home'],
-                  ['activity', 'Activity'],
-                  ['robot', 'R1'],
-                  ['you', 'Idea'],
-                ] as const
-              ).map(([id, label]) => (
-                <button key={id} className={tab === id ? 'active' : ''} onClick={() => setTab(id)}>
-                  {label}
-                </button>
-              ))}
-            </nav>
-
-            {busy && (
-              <div className="overlay">
-                <div className="sheet">
-                  <p className="kicker">R1 en route</p>
-                  <h3 style={{ marginTop: 8 }}>{busy}</h3>
-                  <p className="muted" style={{ marginTop: 6 }}>
-                    Walking the last physical change back. Don’t touch the object — that’s the test.
-                  </p>
-                  <div className="bar">
-                    <span />
-                  </div>
-                </div>
-              </div>
-            )}
-          </>
-        )}
-      </div>
+export default function App() {
+  return (
+    <div className="page">
+      <CursorFollower />
+      <Navbar />
+      <main>
+        <Hero />
+        <Strategy />
+        <Competencies />
+        <Works />
+        <About />
+        <Impact />
+        <Testimonials />
+      </main>
+      <Footer />
+      <ScrollRail />
     </div>
   )
 }
