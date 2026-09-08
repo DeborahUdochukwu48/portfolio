@@ -339,9 +339,9 @@ main,
   scroll-margin-top: 24px;
 }
 
-.section > h2 {
+.section h2 {
   font-size: clamp(28px, 4vw, 40px);
-  margin-bottom: 28px;
+  margin-bottom: 38px;
 }
 
 .section-split {
