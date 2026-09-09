@@ -110,6 +110,7 @@ function HoverLink({
 
 function Navbar() {
   const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
   const menuRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
@@ -128,19 +129,27 @@ function Navbar() {
       if (el?.closest('a')) setOpen(false)
     }
 
+    function onScroll() {
+      setScrolled(window.scrollY > 8)
+    }
+
+    onScroll()
     window.addEventListener('keydown', onKey)
+    window.addEventListener('scroll', onScroll, { passive: true })
     desktop.addEventListener('change', onViewport)
     const menu = menuRef.current
     menu?.addEventListener('click', onMenuClick)
     return () => {
       window.removeEventListener('keydown', onKey)
+      window.removeEventListener('scroll', onScroll)
       desktop.removeEventListener('change', onViewport)
       menu?.removeEventListener('click', onMenuClick)
     }
   }, [])
 
   return (
-    <header className="nav">
+    <header className={scrolled ? 'nav is-scrolled' : 'nav'}>
+      <div className="nav-bar">
       <a className="brand" href="#hero" onClick={() => setOpen(false)}>
         <BrandMark />
         Deborah
@@ -195,6 +204,7 @@ function Navbar() {
           <span />
           <span />
         </button>
+      </div>
       </div>
     </header>
   )

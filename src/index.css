@@ -12,6 +12,7 @@
   --purple: #9b7dff;
   --max: 1120px;
   --page-pad: 24px;
+  --nav-gap: 28px;
   --page-glow-1: rgba(138, 99, 199, 0.28);
   --page-glow-2: rgba(90, 70, 160, 0.18);
   --identity-bg: rgba(0, 0, 0, 0.8);
@@ -108,7 +109,6 @@ h2,
     var(--bg-page);
 }
 
-.nav,
 main,
 .footer {
   position: relative;
@@ -116,19 +116,38 @@ main,
 }
 
 .nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+  padding-top: env(safe-area-inset-top);
+  background: color-mix(in srgb, var(--bg-page) 72%, transparent);
+  backdrop-filter: blur(18px) saturate(1.15);
+  -webkit-backdrop-filter: blur(18px) saturate(1.15);
+}
+
+.nav.is-scrolled {
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.22);
+}
+
+html[data-theme="light"] .nav.is-scrolled {
+  box-shadow: 0 10px 28px rgba(22, 18, 28, 0.08);
+}
+
+.nav-bar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   max-width: var(--max);
   margin: 0 auto;
-  padding: 28px var(--page-pad) 8px;
-  z-index: 50;
+  padding: 16px var(--page-pad);
+  gap: var(--nav-gap);
 }
 
 .nav-tools {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--nav-gap);
 }
 
 .theme-toggle {
@@ -157,6 +176,7 @@ main,
   display: flex;
   align-items: center;
   gap: 10px;
+  margin-right: auto;
   font-size: 18px;
   font-weight: 500;
 }
@@ -168,11 +188,9 @@ main,
 
 .nav-links {
   display: flex;
-  gap: 28px;
+  gap: var(--nav-gap);
   font-size: 13px;
   letter-spacing: 0.04em;
-  margin-left: auto;
-  margin-right: 8px;
 }
 
 .nav-links a {
@@ -189,6 +207,7 @@ main,
   text-align: center;
   position: relative;
   overflow: hidden;
+  scroll-margin-top: 88px;
 }
 
 .hero-inner {
@@ -412,7 +431,7 @@ main,
   max-width: var(--max);
   margin: 0 auto;
   padding: 72px var(--page-pad) 24px;
-  scroll-margin-top: 24px;
+  scroll-margin-top: 88px;
 }
 
 .section h2 {
@@ -866,6 +885,7 @@ html[data-theme="light"] .phones {
   padding: 120px var(--page-pad) 80px;
   position: relative;
   overflow: hidden;
+  scroll-margin-top: 88px;
 }
 
 .footer-glow {
@@ -952,6 +972,10 @@ html[data-theme="light"] .phones {
 }
 
 @media (max-width: 960px) {
+  :root {
+    --nav-gap: 16px;
+  }
+
   .nav-links {
     gap: 16px;
     font-size: 13px;
@@ -977,17 +1001,18 @@ html[data-theme="light"] .phones {
 }
 
 @media (max-width: 800px) {
-  .nav {
+  .nav-bar {
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: center;
     column-gap: 12px;
-    padding: 18px var(--page-pad) 8px;
+    padding: 14px var(--page-pad) 10px;
   }
 
   .nav-tools {
     grid-column: 2;
     grid-row: 1;
+    gap: 8px;
   }
 
   .nav-toggle {
