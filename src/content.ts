@@ -3,6 +3,7 @@ export const LINKS = {
   x: 'https://x.com/Debs_designguru',
   medium: 'https://medium.com/@deborahprecious48',
   email: 'mailto:deborahprecious48@gmail.com',
+  github: 'https://github.com/DeborahUdochukwu48',
   vwLive:
     'https://www.vw.com/en/owners-and-services/apps-and-connected-services/myvw-app.html',
   skodaLive: 'https://www.skoda-auto.de/service/app',

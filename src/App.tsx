@@ -1,6 +1,7 @@
 import { type ReactNode, useEffect, useRef, useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { CursorFollower } from './CursorFollower'
+import { Starfield } from './Starfield'
 import {
   ArrowOut,
   BrandMark,
@@ -127,8 +128,13 @@ function Navbar() {
         <HoverLink href="#about" onClick={() => setOpen(false)}>
           About me
         </HoverLink>
-        <HoverLink href="#contact" onClick={() => setOpen(false)}>
-          Contact
+        <HoverLink
+          href={LINKS.github}
+          target="_blank"
+          rel="noreferrer"
+          onClick={() => setOpen(false)}
+        >
+          Github
         </HoverLink>
         <HoverLink
           href={LINKS.cv}
@@ -150,7 +156,9 @@ function Hero() {
 
   return (
     <section className="hero" id="hero">
+      <Starfield />
       <div className="hero-glow" />
+      <div className="hero-inner">
       <motion.div
         className="identity"
         initial={enter ? 'hidden' : false}
@@ -182,18 +190,30 @@ function Hero() {
         ideation, product strategy, and detailed execution to build scalable products that drive
         real value.
       </motion.p>
-      <motion.a
-        className="btn-glow"
-        href="#projects"
+      <motion.div
+        className="hero-actions"
         initial={enter ? 'hidden' : false}
         animate="show"
         variants={enter}
         transition={{ duration: 0.5, delay: 0.24, ease }}
-        whileHover={reduce ? undefined : { scale: 1.04 }}
-        whileTap={reduce ? undefined : { scale: 0.98 }}
       >
-        View my works
-      </motion.a>
+        <motion.a
+          className="btn-glow"
+          href="#projects"
+          whileHover={reduce ? undefined : { scale: 1.04 }}
+          whileTap={reduce ? undefined : { scale: 0.98 }}
+        >
+          View my works
+        </motion.a>
+        <motion.a
+          className="btn-ghost"
+          href={LINKS.email}
+          whileHover={reduce ? undefined : { scale: 1.04 }}
+          whileTap={reduce ? undefined : { scale: 0.98 }}
+        >
+          Contact Deborah
+        </motion.a>
+      </motion.div>
 
       <Reveal className="stats-card" delay={0.12}>
         <div className="stats-row">
@@ -248,6 +268,7 @@ function Hero() {
         <MouseIcon />
         <span className="scroll-line" />
         <span>to see projects</span>
+      </div>
       </div>
     </section>
   )
@@ -489,7 +510,7 @@ function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.5, delay: index * 0.07, ease }}
-            whileHover={reduce ? undefined : { y: -6, scale: 1.02 }}
+            whileHover={reduce ? undefined : { y: -6 }}
           >
             <img src={item.src} alt={item.caption} />
             <figcaption>
@@ -647,6 +668,7 @@ function Footer() {
   const reduce = useReducedMotion()
   return (
     <footer className="footer" id="contact">
+      <Starfield />
       <div className="footer-glow" />
       <Reveal>
         <h2>Let&apos;s make positive impact together!</h2>
