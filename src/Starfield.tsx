@@ -14,18 +14,18 @@ type Dot = {
 }
 
 function seedDots(width: number, height: number): Dot[] {
-  const count = Math.max(36, Math.round((width * height) / 3400))
+  const count = Math.max(28, Math.round((width * height) / 4400))
   const dots: Dot[] = []
   for (let i = 0; i < count; i += 1) {
     dots.push({
       x: Math.random() * width,
       y: Math.random() * height,
-      r: 0.5 + Math.random() * 1.7,
-      base: 0.12 + Math.random() * 0.42,
-      twinkle: 0.04 + Math.random() * 0.18,
+      r: 0.4 + Math.random() * 1.3,
+      base: 0.08 + Math.random() * 0.26,
+      twinkle: 0.03 + Math.random() * 0.1,
       phase: Math.random() * Math.PI * 2,
-      vx: (Math.random() - 0.5) * 0.18,
-      vy: -0.04 - Math.random() * 0.12,
+      vx: (Math.random() - 0.5) * 0.14,
+      vy: -0.03 - Math.random() * 0.09,
       tint: Math.random(),
     })
   }
@@ -36,15 +36,15 @@ function paint(ctx: CanvasRenderingContext2D, dots: Dot[], time: number, animate
   const light = document.documentElement.dataset.theme === 'light'
   for (const dot of dots) {
     const pulse = animate ? Math.sin(time * 0.0012 + dot.phase) : 0
-    const alpha = Math.min(0.7, Math.max(0.05, dot.base + pulse * dot.twinkle))
+    const alpha = Math.min(0.42, Math.max(0.04, dot.base + pulse * dot.twinkle))
     ctx.beginPath()
     ctx.fillStyle = light
       ? dot.tint > 0.78
-        ? `rgba(124, 58, 237, ${alpha * 0.45})`
-        : `rgba(48, 38, 68, ${alpha * 0.38})`
+        ? `rgba(124, 58, 237, ${alpha * 0.32})`
+        : `rgba(48, 38, 68, ${alpha * 0.26})`
       : dot.tint > 0.78
-        ? `rgba(181, 135, 255, ${alpha * 0.9})`
-        : `rgba(235, 235, 245, ${alpha})`
+        ? `rgba(181, 135, 255, ${alpha * 0.55})`
+        : `rgba(235, 235, 245, ${alpha * 0.7})`
     ctx.arc(dot.x, dot.y, dot.r, 0, Math.PI * 2)
     ctx.fill()
   }
