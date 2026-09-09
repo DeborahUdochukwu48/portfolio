@@ -71,8 +71,8 @@ export function ArrowOut() {
 export function MouseIcon() {
   return (
     <svg width="18" height="28" viewBox="0 0 18 28" fill="none" aria-hidden>
-      <rect x="1" y="1" width="16" height="26" rx="8" stroke="rgba(255,255,255,0.45)" />
-      <circle cx="9" cy="8" r="1.6" fill="rgba(255,255,255,0.7)" />
+      <rect x="1" y="1" width="16" height="26" rx="8" stroke="currentColor" opacity="0.45" />
+      <circle cx="9" cy="8" r="1.6" fill="currentColor" opacity="0.7" />
     </svg>
   )
 }
@@ -118,14 +118,42 @@ export function PinIcon() {
   )
 }
 
+export function SunIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+      <circle cx="12" cy="12" r="3.4" stroke="currentColor" strokeWidth="1.6" />
+      <path
+        d="M12 3.2v1.8M12 19v1.8M4.9 4.9l1.3 1.3M17.8 17.8l1.3 1.3M3.2 12H5M19 12h1.8M4.9 19.1l1.3-1.3M17.8 6.2l1.3-1.3"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+      />
+    </svg>
+  )
+}
+
+export function MoonIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path
+        d="M16.4 13.6A6.4 6.4 0 0 1 10.2 5a6.6 6.6 0 1 0 6.2 8.6Z"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
 export function BrandMark() {
   return (
     <span className="brand-mark" aria-hidden>
       <svg width="28" height="28" viewBox="0 0 28 28">
-        <circle cx="14" cy="14" r="13" fill="none" stroke="white" strokeWidth="1.4" />
+        <circle cx="14" cy="14" r="13" fill="none" stroke="currentColor" strokeWidth="1.4" />
         <path
           d="M9.6 6.4h5.6c3.55 0 6.05 2.45 6.05 7.6s-2.5 7.6-6.05 7.6H9.6V6.4Zm2.35 2.2v10.8h3.25c2.25 0 3.7-1.7 3.7-5.4 0-3.7-1.45-5.4-3.7-5.4H11.95Z"
-          fill="white"
+          fill="currentColor"
         />
       </svg>
     </span>

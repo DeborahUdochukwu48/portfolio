@@ -33,12 +33,16 @@ function seedDots(width: number, height: number): Dot[] {
 }
 
 function paint(ctx: CanvasRenderingContext2D, dots: Dot[], time: number, animate: boolean) {
+  const light = document.documentElement.dataset.theme === 'light'
   for (const dot of dots) {
     const pulse = animate ? Math.sin(time * 0.0012 + dot.phase) : 0
     const alpha = Math.min(0.7, Math.max(0.05, dot.base + pulse * dot.twinkle))
     ctx.beginPath()
-    ctx.fillStyle =
-      dot.tint > 0.78
+    ctx.fillStyle = light
+      ? dot.tint > 0.78
+        ? `rgba(124, 58, 237, ${alpha * 0.45})`
+        : `rgba(48, 38, 68, ${alpha * 0.38})`
+      : dot.tint > 0.78
         ? `rgba(181, 135, 255, ${alpha * 0.9})`
         : `rgba(235, 235, 245, ${alpha})`
     ctx.arc(dot.x, dot.y, dot.r, 0, Math.PI * 2)
@@ -118,9 +122,19 @@ function startStarfield(
   document.addEventListener('visibilitychange', onHidden)
   if (animate) start()
 
+  const themeWatch = new MutationObserver(() => {
+    context.clearRect(0, 0, width, height)
+    paint(context, dots, performance.now(), animate)
+  })
+  themeWatch.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme'],
+  })
+
   return () => {
     observer.disconnect()
     vis.disconnect()
+    themeWatch.disconnect()
     document.removeEventListener('visibilitychange', onHidden)
     window.cancelAnimationFrame(frame)
   }

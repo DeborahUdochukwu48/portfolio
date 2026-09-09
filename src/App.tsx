@@ -10,6 +10,8 @@ import {
   CompetencyIcon,
   MouseIcon,
   PinIcon,
+  SunIcon,
+  MoonIcon,
 } from './icons'
 import { MotionCard, Reveal } from './motion'
 import { SynergyMap } from './SynergyMap'
@@ -24,6 +26,53 @@ import {
 } from './content'
 
 const ease = [0.22, 1, 0.36, 1] as const
+
+type Theme = 'dark' | 'light'
+
+function readTheme(): Theme {
+  try {
+    return localStorage.getItem('theme') === 'light' ? 'light' : 'dark'
+  } catch {
+    return 'dark'
+  }
+}
+
+function applyTheme(theme: Theme) {
+  if (theme === 'light') document.documentElement.dataset.theme = 'light'
+  else delete document.documentElement.dataset.theme
+  document
+    .querySelector('meta[name="theme-color"]')
+    ?.setAttribute('content', theme === 'light' ? '#f4f2f8' : '#000000')
+  try {
+    localStorage.setItem('theme', theme)
+  } catch {
+    /* ignore */
+  }
+}
+
+function ThemeToggle() {
+  const [theme, setTheme] = useState<Theme>(() =>
+    typeof document === 'undefined' ? 'dark' : readTheme(),
+  )
+
+  useEffect(() => {
+    applyTheme(theme)
+  }, [theme])
+
+  const next = theme === 'dark' ? 'light' : 'dark'
+
+  return (
+    <button
+      type="button"
+      className="theme-toggle"
+      aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+      aria-pressed={theme === 'light'}
+      onClick={() => setTheme(next)}
+    >
+      {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
+    </button>
+  )
+}
 
 function HoverLink({
   href,
@@ -96,18 +145,6 @@ function Navbar() {
         <BrandMark />
         Deborah
       </a>
-      <button
-        type="button"
-        className={open ? 'nav-toggle is-open' : 'nav-toggle'}
-        aria-expanded={open}
-        aria-controls="primary-nav"
-        aria-label={open ? 'Close menu' : 'Open menu'}
-        onClick={() => setOpen((value) => !value)}
-      >
-        <span />
-        <span />
-        <span />
-      </button>
       <nav
         ref={menuRef}
         id="primary-nav"
@@ -144,6 +181,21 @@ function Navbar() {
           CV
         </HoverLink>
       </nav>
+      <div className="nav-tools">
+        <ThemeToggle />
+        <button
+          type="button"
+          className={open ? 'nav-toggle is-open' : 'nav-toggle'}
+          aria-expanded={open}
+          aria-controls="primary-nav"
+          aria-label={open ? 'Close menu' : 'Open menu'}
+          onClick={() => setOpen((value) => !value)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+      </div>
     </header>
   )
 }
@@ -250,6 +302,7 @@ function Hero() {
             </span>
           </div>
         </div>
+        <hr className="stats-divider" />
         <p className="companies-label">Companies I&apos;ve worked with</p>
         <div className="logo-row">
           <img src="/images/logo-vw.png" alt="Volkswagen" />
