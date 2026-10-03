@@ -482,7 +482,7 @@ function Works() {
           </ul>
           <div className="work-actions">
             <motion.a
-              className="btn-ghost"
+              className="btn-glow"
               href={LINKS.transcribeCase}
               target="_blank"
               rel="noreferrer"
