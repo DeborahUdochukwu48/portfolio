@@ -315,7 +315,7 @@ function Hero() {
           whileHover={reduce ? undefined : { scale: 1.04 }}
           whileTap={reduce ? undefined : { scale: 0.98 }}
         >
-          View my works
+          See what I&apos;ve built
         </motion.a>
         <motion.a
           className="btn-ghost"
