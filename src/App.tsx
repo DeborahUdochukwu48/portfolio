@@ -342,16 +342,15 @@ function Strategy() {
     <section className="section strategy-section">
       <div className="section-split">
         <Reveal>
-          <h2>Where Strategy Meets Experience</h2>
+          <h2>How I Work: From Problem to Shipped Product</h2>
           <p>
-            I treat product strategy, UX design, research, and business growth as one connected
-            system. Product strategy gives direction, data validates it, and design makes it usable,
-            research keeps all of it honest, and growth tells me whether any of it actually worked.
+            I&apos;m a senior product manager with a strong design background, and it shapes how I
+            work. I start with the user&apos;s problem, prototype early in Figma or with AI-assisted
+            tools, and test before anything gets expensive to build.
           </p>
           <p>
-            No framework fits every problem, and no two companies work the same way. So rather than
-            force-fitting a process, I adapt how I show up, partnering with you across three
-            distinct roles, from framing the problem to landing the solution.
+            After leading product design across four VW Group brands, I now own the path from first
+            sketch to shipped product, including tools I build myself with AI.
           </p>
         </Reveal>
       </div>
