@@ -689,35 +689,35 @@ function Impact() {
       <Reveal className="impact-card">
         <div className="stats-row impact-stats">
           <div className="stat-cell">
-            <strong>0-1</strong>
+            <strong>5+</strong>
             <span>
-              Proven Track Record
+              Large-scale apps
               <br />
-              Shipping Complex Products
+              taken to market
             </span>
           </div>
           <div className="stat-cell">
-            <strong>150+</strong>
+            <strong>4</strong>
             <span>
-              Managers, Designers
+              Product models: B2C, B2B,
               <br />
-              &amp; Stakeholders Supported
+              D2C &amp; platform
             </span>
           </div>
           <div className="stat-cell">
-            <strong>1000+</strong>
+            <strong>AI</strong>
             <span>
-              People in my Community
+              Tools I design, build,
               <br />
-              IxDA and beyond
+              and ship myself
             </span>
           </div>
           <div className="stat-cell">
-            <strong>10+</strong>
+            <strong>MSc</strong>
             <span>
-              Speaking Engagements
+              Information Technology,
               <br />
-              at Tech Events
+              AIU
             </span>
           </div>
         </div>
