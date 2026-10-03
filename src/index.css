@@ -655,6 +655,10 @@ html[data-theme="light"] .nav.is-scrolled {
   padding-left: 18px;
 }
 
+.work-copy p + .btn-ghost {
+  margin-top: 22px;
+}
+
 .impact-label {
   color: var(--text) !important;
   font-weight: 600;
