@@ -11,6 +11,8 @@ export const LINKS = {
     'https://medium.com/@deborahprecious48/reversal-an-autonomous-humanoid-aid-performing-physical-command-z-function-in-your-space-37673fa7c3d9',
   kladotCase:
     'https://medium.com/@deborahprecious48/case-study-kladot-app-digital-banking-a-ux-case-study-198c7fb368d5',
+  transcribe:
+    'https://github.com/DeborahUdochukwu48/apple-notes-transcribe',
   cv: '/CV_Deborah_Amajuoyi.docx',
 }
 
