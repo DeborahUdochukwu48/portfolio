@@ -414,7 +414,7 @@ function Works() {
         <div className="work-copy">
           <p className="work-brand">
             <img src="/images/logo-notes.svg" alt="" />
-            Apple Notes
+            Apple Notes (Personal Project)
           </p>
           <h3>Apple Notes Transcriber</h3>
           <p>
