@@ -17,7 +17,7 @@ export const LINKS = {
 export const COMPETENCIES = [
   {
     title: 'AI Frameworks and Applications',
-    body: 'Prompt engineering & eval design, RAG & fine-tuning, model selection (latency/cost/quality tradeoffs), vibe coding, AI-assisted research & synthesis, workflow automation.',
+    body: 'Prompt engineering & eval design, RAG & fine-tuning, model selection (latency/cost/quality tradeoffs), vibe coding, workflow automation. Built and shipped: Apple Notes Transcriber →',
     icon: 'phone',
   },
   {
