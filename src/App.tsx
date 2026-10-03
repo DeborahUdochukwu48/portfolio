@@ -413,6 +413,47 @@ function Works() {
       <MotionCard className="work-card">
         <div className="work-copy">
           <p className="work-brand">
+            <img src="/images/logo-notes.svg" alt="" />
+            Apple Notes
+          </p>
+          <h3>Apple Notes Transcriber</h3>
+          <p>
+            A macOS CLI that takes an existing audio file, transcribes it with OpenAI Whisper, and
+            writes the transcript into a new Apple Note, optionally in a named folder.
+          </p>
+          <p className="impact-label">Impact</p>
+          <ul>
+            <li>
+              Closed the gap where Apple Notes only transcribes audio recorded live inside a note.
+            </li>
+            <li>
+              Turns a standalone .m4a or .mp3 into a searchable, organized note in one command.
+            </li>
+          </ul>
+          <motion.a
+            className="btn-ghost"
+            href={LINKS.transcribe}
+            target="_blank"
+            rel="noreferrer"
+            whileHover={reduce ? undefined : { scale: 1.04 }}
+          >
+            View on GitHub <ArrowOut />
+          </motion.a>
+        </div>
+        <div className="work-media purple">
+          <div className="phones single">
+            <PhoneFrame
+              src="/images/work-transcribe.mp4"
+              alt="Apple Notes Transcriber turning an audio file into a note"
+              video
+            />
+          </div>
+        </div>
+      </MotionCard>
+
+      <MotionCard className="work-card" delay={0.06}>
+        <div className="work-copy">
+          <p className="work-brand">
             <img src="/images/logo-vw.png" alt="" />
             Volkswagen AG
           </p>
@@ -445,7 +486,7 @@ function Works() {
         </div>
       </MotionCard>
 
-      <MotionCard className="work-card" delay={0.06}>
+      <MotionCard className="work-card" delay={0.08}>
         <div className="work-copy">
           <p className="work-brand">
             <img src="/images/logo-skoda.png" alt="" />
@@ -481,7 +522,7 @@ function Works() {
         </div>
       </MotionCard>
 
-      <MotionCard className="work-card" delay={0.08}>
+      <MotionCard className="work-card" delay={0.1}>
         <div className="work-copy">
           <p className="work-brand">
             <img className="wordmark" src="/images/logo-reversal.png" alt="" />
@@ -513,7 +554,7 @@ function Works() {
         </div>
       </MotionCard>
 
-      <MotionCard className="work-card" delay={0.1}>
+      <MotionCard className="work-card" delay={0.12}>
         <div className="work-copy">
           <p className="work-brand">
             <img className="wordmark kladot" src="/images/logo-kladot.png" alt="" />
@@ -539,47 +580,6 @@ function Works() {
         <div className="work-media">
           <div className="phones single">
             <PhoneFrame src="/images/kladot-collage.png" alt="Kladot app screens" />
-          </div>
-        </div>
-      </MotionCard>
-
-      <MotionCard className="work-card" delay={0.12}>
-        <div className="work-copy">
-          <p className="work-brand">
-            <img src="/images/logo-notes.svg" alt="" />
-            Apple Notes
-          </p>
-          <h3>Apple Notes Transcriber</h3>
-          <p>
-            A macOS CLI that takes an existing audio file, transcribes it with OpenAI Whisper, and
-            writes the transcript into a new Apple Note, optionally in a named folder.
-          </p>
-          <p className="impact-label">Impact</p>
-          <ul>
-            <li>
-              Closed the gap where Apple Notes only transcribes audio recorded live inside a note.
-            </li>
-            <li>
-              Turns a standalone .m4a or .mp3 into a searchable, organized note in one command.
-            </li>
-          </ul>
-          <motion.a
-            className="btn-ghost"
-            href={LINKS.transcribe}
-            target="_blank"
-            rel="noreferrer"
-            whileHover={reduce ? undefined : { scale: 1.04 }}
-          >
-            View on GitHub <ArrowOut />
-          </motion.a>
-        </div>
-        <div className="work-media purple">
-          <div className="phones single">
-            <PhoneFrame
-              src="/images/work-transcribe.mp4"
-              alt="Apple Notes Transcriber turning an audio file into a note"
-              video
-            />
           </div>
         </div>
       </MotionCard>
