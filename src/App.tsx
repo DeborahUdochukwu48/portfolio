@@ -480,15 +480,26 @@ function Works() {
             <li>Chose to ship a working prototype instead of stopping at a mockup.</li>
             <li>One command turns a standalone audio file into a searchable, organized note.</li>
           </ul>
-          <motion.a
-            className="btn-ghost"
-            href={LINKS.transcribe}
-            target="_blank"
-            rel="noreferrer"
-            whileHover={reduce ? undefined : { scale: 1.04 }}
-          >
-            View on GitHub <ArrowOut />
-          </motion.a>
+          <div className="work-actions">
+            <motion.a
+              className="btn-ghost"
+              href={LINKS.transcribeCase}
+              target="_blank"
+              rel="noreferrer"
+              whileHover={reduce ? undefined : { scale: 1.04 }}
+            >
+              Read the Case Study <ArrowOut />
+            </motion.a>
+            <motion.a
+              className="btn-ghost"
+              href={LINKS.transcribe}
+              target="_blank"
+              rel="noreferrer"
+              whileHover={reduce ? undefined : { scale: 1.04 }}
+            >
+              View on GitHub <ArrowOut />
+            </motion.a>
+          </div>
         </div>
         <div className="work-media purple">
           <div className="phones single">

@@ -13,6 +13,8 @@ export const LINKS = {
     'https://medium.com/@deborahprecious48/case-study-kladot-app-digital-banking-a-ux-case-study-198c7fb368d5',
   transcribe:
     'https://github.com/DeborahUdochukwu48/apple-notes-transcribe',
+  transcribeCase:
+    'https://medium.com/@deborahprecious48/closing-the-gap-bringing-file-based-transcription-to-apple-notes-bc157cffe720',
   cv: '/CV_Deborah_Amajuoyi.docx',
 }
 

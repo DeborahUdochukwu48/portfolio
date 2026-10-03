@@ -659,6 +659,13 @@ html[data-theme="light"] .nav.is-scrolled {
   margin-top: 22px;
 }
 
+.work-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
 .impact-label {
   color: var(--text) !important;
   font-weight: 600;
