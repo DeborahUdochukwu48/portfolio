@@ -16,6 +16,11 @@ export const LINKS = {
 
 export const COMPETENCIES = [
   {
+    title: 'AI Frameworks and Applications',
+    body: 'Prompt engineering & eval design, RAG & fine-tuning, model selection (latency/cost/quality tradeoffs), vibe coding, AI-assisted research & synthesis, workflow automation.',
+    icon: 'phone',
+  },
+  {
     title: 'Strategy and vision',
     body: 'Product strategy, roadmap development, product-market fit, market sizing, market opportunity discovery, growth strategy, commercial awareness.',
     icon: 'target',
@@ -39,11 +44,6 @@ export const COMPETENCIES = [
     title: 'Insight and analysis',
     body: 'Data-driven decision making, problem solving & innovation, market analysis.',
     icon: 'chart',
-  },
-  {
-    title: 'AI Frameworks and Applications',
-    body: 'Prompt engineering & eval design, RAG & fine-tuning, model selection (latency/cost/quality tradeoffs), vibe coding, AI-assisted research & synthesis, workflow automation.',
-    icon: 'phone',
   },
 ] as const
 
