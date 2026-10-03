@@ -212,7 +212,7 @@ function Navbar() {
 
 const HERO_TITLE = [
   ['Senior', 'Product', 'Manager'],
-  ['who', 'Ships.'],
+  ['who', 'Builds.'],
 ] as const
 
 function HeroTitle() {
@@ -240,7 +240,7 @@ function HeroTitle() {
 
   return (
     <motion.h1
-      aria-label="Senior Product Manager who Ships."
+      aria-label="Senior Product Manager who Builds."
       initial={enter ? 'hidden' : false}
       animate="show"
       variants={enter}
