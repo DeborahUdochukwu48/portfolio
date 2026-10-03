@@ -298,9 +298,8 @@ function Hero() {
         variants={enter}
         transition={{ duration: 0.55, delay: 0.16, ease }}
       >
-        Hi, I&apos;m Deborah, a Senior Product Manager with a strong design background. I combine
-        ideation, product strategy, and detailed execution to build scalable products that drive
-        real value.
+        Hi, I&apos;m Deborah, a senior product manager with a strong design background. I set the
+        product strategy, shape the experience, and take it from first sketch to shipped product.
       </motion.p>
       <motion.div
         className="hero-actions"
