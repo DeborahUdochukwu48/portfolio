@@ -269,8 +269,27 @@ html[data-theme="light"] .nav.is-scrolled {
   line-height: 0.98;
 }
 
-.hero h1 span {
+.hero-title-line {
+  display: block;
+}
+
+.hero h1 .hero-word {
+  display: inline-block;
+  margin-right: 0.28em;
+  color: var(--text);
+  transition:
+    color 0.5s ease,
+    text-shadow 0.5s ease,
+    transform 0.5s ease;
+}
+
+.hero-title-line .hero-word:last-child {
+  margin-right: 0;
+}
+
+.hero h1 .hero-word.is-accent {
   color: var(--accent);
+  text-shadow: 0 0 28px rgba(168, 85, 247, 0.42);
 }
 
 .lede {

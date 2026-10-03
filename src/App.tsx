@@ -210,6 +210,65 @@ function Navbar() {
   )
 }
 
+const HERO_TITLE = [
+  ['Senior', 'Product', 'Manager'],
+  ['who', 'Ships.'],
+] as const
+
+function HeroTitle() {
+  const reduce = useReducedMotion()
+  const words = HERO_TITLE.flat()
+  const [active, setActive] = useState(words.length - 1)
+
+  useEffect(() => {
+    if (reduce) {
+      setActive(words.length - 1)
+      return
+    }
+    setActive(0)
+    const id = window.setInterval(() => {
+      setActive((index) => (index + 1) % words.length)
+    }, 1300)
+    return () => window.clearInterval(id)
+  }, [reduce, words.length])
+
+  const enter = reduce
+    ? undefined
+    : { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }
+
+  let wordIndex = 0
+
+  return (
+    <motion.h1
+      aria-label="Senior Product Manager who Ships."
+      initial={enter ? 'hidden' : false}
+      animate="show"
+      variants={enter}
+      transition={{ duration: 0.6, delay: 0.08, ease }}
+    >
+      {HERO_TITLE.map((line) => (
+        <span key={line.join(' ')} className="hero-title-line">
+          {line.map((word) => {
+            const index = wordIndex
+            wordIndex += 1
+            return (
+              <motion.span
+                key={word}
+                className={active === index ? 'hero-word is-accent' : 'hero-word'}
+                initial={reduce ? false : { opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.45, delay: 0.1 + index * 0.08, ease }}
+              >
+                {word}
+              </motion.span>
+            )
+          })}
+        </span>
+      ))}
+    </motion.h1>
+  )
+}
+
 function Hero() {
   const reduce = useReducedMotion()
   const enter = reduce
@@ -231,16 +290,7 @@ function Hero() {
         <img src="/images/logo-d.png" alt="" />
         <span>Amajuoyi Udochukwu Deborah</span>
       </motion.div>
-      <motion.h1
-        initial={enter ? 'hidden' : false}
-        animate="show"
-        variants={enter}
-        transition={{ duration: 0.6, delay: 0.08, ease }}
-      >
-        Strategic <span>Product</span>
-        <br />
-        Manager
-      </motion.h1>
+      <HeroTitle />
       <motion.p
         className="lede"
         initial={enter ? 'hidden' : false}
