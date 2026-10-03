@@ -601,10 +601,11 @@ function About() {
       <Reveal>
         <h2>Amajuoyi Udochukwu Deborah</h2>
         <p className="about-bio">
-          Hi, I&apos;m Deborah. I&apos;m a Senior Product Manager with deep experience leading B2B,
-          B2C, D2C, and platform products, paired with a strong background in design. I turn messy
-          business problems and technical constraints into products people actually want to
-          use, backed by real research and data, not just gut feel.
+          Hi, I&apos;m Deborah, a senior product manager with a strong design background. I love
+          turning messy business problems and technical constraints into products people actually
+          want to use, across B2C, B2B, D2C, and platform, including AI tools I build myself. I make
+          decisions with research and data, not gut feel, and when I&apos;m not shipping, you&apos;ll
+          find me mentoring and speaking in the design and product community.
         </p>
       </Reveal>
       <div className="gallery">
