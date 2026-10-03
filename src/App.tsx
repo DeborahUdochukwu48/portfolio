@@ -412,24 +412,30 @@ function Works() {
 
       <MotionCard className="work-card">
         <div className="work-copy">
+          <p className="work-kicker">Personal project · Designed and built by me</p>
           <p className="work-brand">
             <img src="/images/logo-notes.svg" alt="" />
-            Apple Notes
+            Apple notes (Personal Project)
           </p>
           <h3>Apple Notes Transcriber</h3>
           <p>
-            A macOS CLI that takes an existing audio file, transcribes it with OpenAI Whisper, and
-            writes the transcript into a new Apple Note, optionally in a named folder.
+            Apple Notes can transcribe live recordings, but not audio you already have. I built a
+            macOS command-line tool that takes an existing .m4a or .mp3, transcribes it with OpenAI
+            Whisper, and drops the transcript into a new note, optionally in a folder you name.
           </p>
-          <p className="impact-label">Impact</p>
+          <p className="impact-label">Why I built it</p>
           <ul>
             <li>
-              Closed the gap where Apple Notes only transcribes audio recorded live inside a note.
+              Spotted a real product gap: no way to import and transcribe existing audio in Apple
+              Notes
             </li>
-            <li>
-              Turns a standalone .m4a or .mp3 into a searchable, organized note in one command.
-            </li>
+            <li>Chose to ship a working prototype instead of stopping at a mockup</li>
           </ul>
+          <p className="impact-label">What it does</p>
+          <ul>
+            <li>One command turns a standalone audio file into a searchable, organized note</li>
+          </ul>
+          <p className="work-built">Built with: Swift, Cursor, OpenAI Whisper API, AppleScript</p>
           <motion.a
             className="btn-ghost"
             href={LINKS.transcribe}
