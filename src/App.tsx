@@ -163,16 +163,16 @@ function Navbar() {
         <HoverLink href="#projects" onClick={() => setOpen(false)}>
           Work
         </HoverLink>
+        <HoverLink href="#about" onClick={() => setOpen(false)}>
+          About me
+        </HoverLink>
         <HoverLink
           href={LINKS.linkedin}
           target="_blank"
           rel="noreferrer"
           onClick={() => setOpen(false)}
         >
-          Linkedin
-        </HoverLink>
-        <HoverLink href="#about" onClick={() => setOpen(false)}>
-          About me
+          LinkedIn
         </HoverLink>
         <HoverLink
           href={LINKS.github}
@@ -180,7 +180,7 @@ function Navbar() {
           rel="noreferrer"
           onClick={() => setOpen(false)}
         >
-          Github
+          GitHub
         </HoverLink>
         <HoverLink
           href={LINKS.cv}
@@ -330,40 +330,40 @@ function Hero() {
       <Reveal className="stats-card" delay={0.12}>
         <div className="stats-row">
           <div className="stat-cell">
-            <strong>0-1</strong>
-            <span>
-              Proven Track Record
-              <br />
-              Shipping Complex Products
-            </span>
-          </div>
-          <div className="stat-cell">
             <strong>5+</strong>
             <span>
-              Large Scale Apps
+              Large-scale apps
               <br />
-              to Market
+              taken to market
             </span>
           </div>
           <div className="stat-cell">
-            <strong>150+</strong>
+            <strong>4</strong>
             <span>
-              Managers, Designers
+              Product models: B2C, B2B,
               <br />
-              &amp; Stakeholders Supported
+              D2C &amp; platform
             </span>
           </div>
           <div className="stat-cell">
-            <strong>Msc</strong>
+            <strong>AI</strong>
             <span>
-              Information Tech.
+              Tools I design, build,
               <br />
-              from AIU
+              and ship myself
+            </span>
+          </div>
+          <div className="stat-cell">
+            <strong>MSc</strong>
+            <span>
+              Information Technology,
+              <br />
+              AIU
             </span>
           </div>
         </div>
         <hr className="stats-divider" />
-        <p className="companies-label">Companies I&apos;ve worked with</p>
+        <p className="companies-label">Shipped for</p>
         <div className="logo-row">
           <img src="/images/logo-vw.png" alt="Volkswagen" />
           <img src="/images/logo-seat.png" alt="SEAT" />
