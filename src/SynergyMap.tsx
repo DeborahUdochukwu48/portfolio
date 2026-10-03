@@ -75,7 +75,7 @@ export function SynergyMap() {
   return (
     <div className="flow-card synergy">
       <div className="flow-inputs">
-        {['Strategy', 'Research', 'UX & design', 'Execution'].map((label, index) => (
+        {['Discover', 'Define', 'Prototype', 'Ship'].map((label, index) => (
           <motion.div
             key={label}
             className="flow-chip"
@@ -104,8 +104,8 @@ export function SynergyMap() {
             : { scale: 1.03, boxShadow: '0 12px 48px rgba(168, 85, 247, 0.55)' }
         }
       >
-        <strong>Human-centered strategy</strong>
-        <span>Owned end to end, across teams</span>
+        <strong>Product thinking</strong>
+        <span>Owned end to end</span>
       </motion.div>
 
       <DrawnPaths className="flow-lines short" viewBox="0 0 1000 88" segments={OUT_SEGMENTS} />
@@ -119,7 +119,7 @@ export function SynergyMap() {
           transition={{ duration: 0.4, delay: reduce ? 0 : 1.4, ease }}
           whileHover={reduce ? undefined : chipHover}
         >
-          <b>Business growth</b>
+          <b>Business results</b>
           <span>Conversion &amp; retention</span>
         </motion.div>
         <motion.div
@@ -130,7 +130,7 @@ export function SynergyMap() {
           transition={{ duration: 0.4, delay: reduce ? 0 : 1.5, ease }}
           whileHover={reduce ? undefined : chipHover}
         >
-          <b>Intuitive experience</b>
+          <b>Usable products</b>
           <span>Simple, human, intuitive</span>
         </motion.div>
       </div>
