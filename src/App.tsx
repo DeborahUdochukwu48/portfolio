@@ -488,7 +488,7 @@ function Works() {
               rel="noreferrer"
               whileHover={reduce ? undefined : { scale: 1.04 }}
             >
-              Read the Case Study <ArrowOut />
+              View Case Study <ArrowOut />
             </motion.a>
             <motion.a
               className="btn-ghost"
