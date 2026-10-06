@@ -210,22 +210,60 @@ function Navbar() {
   )
 }
 
-const HERO_ROTATING = ['Plans', 'Designs', 'Builds', 'Ships'] as const
+const HERO_ROTATING = ['Plans.', 'Designs.', 'Builds.', 'Ships.'] as const
 
 function HeroTitle() {
   const reduce = useReducedMotion()
-  const [active, setActive] = useState(HERO_ROTATING.length - 1)
+  const [shown, setShown] = useState(HERO_ROTATING[HERO_ROTATING.length - 1])
 
   useEffect(() => {
     if (reduce) {
-      setActive(HERO_ROTATING.length - 1)
+      setShown(HERO_ROTATING[HERO_ROTATING.length - 1])
       return
     }
-    setActive(0)
-    const id = window.setInterval(() => {
-      setActive((index) => (index + 1) % HERO_ROTATING.length)
-    }, 2200)
-    return () => window.clearInterval(id)
+
+    let cancelled = false
+    let phrase = 0
+    let count = 0
+    let deleting = false
+    let timeout = 0
+
+    const schedule = (delay: number) => {
+      timeout = window.setTimeout(tick, delay)
+    }
+
+    const tick = () => {
+      if (cancelled) return
+      const word = HERO_ROTATING[phrase]
+      if (!deleting) {
+        count += 1
+        setShown(word.slice(0, count))
+        if (count === word.length) {
+          deleting = true
+          schedule(1100)
+          return
+        }
+        schedule(72)
+        return
+      }
+
+      count -= 1
+      setShown(word.slice(0, count))
+      if (count === 0) {
+        deleting = false
+        phrase = (phrase + 1) % HERO_ROTATING.length
+        schedule(240)
+        return
+      }
+      schedule(42)
+    }
+
+    schedule(500)
+    setShown('')
+    return () => {
+      cancelled = true
+      window.clearTimeout(timeout)
+    }
   }, [reduce])
 
   const enter = reduce
@@ -244,21 +282,13 @@ function HeroTitle() {
       <span className="hero-title-line">
         who{' '}
         <span className="hero-rotator" aria-live="polite">
-          {HERO_ROTATING.map((phrase, index) => (
-            <motion.span
-              key={phrase}
-              className="hero-rotator-item"
-              aria-hidden={index !== active}
-              initial={false}
-              animate={{
-                opacity: index === active ? 1 : 0,
-                y: reduce || index === active ? 0 : 18,
-              }}
-              transition={{ duration: reduce ? 0 : 0.45, ease }}
-            >
-              {phrase}.
-            </motion.span>
-          ))}
+          <span className="hero-rotator-sizer" aria-hidden>
+            Designs.
+          </span>
+          <span className="hero-rotator-live">
+            <span className="hero-rotator-text">{shown}</span>
+            {reduce ? null : <span className="hero-caret" aria-hidden />}
+          </span>
         </span>
       </span>
     </motion.h1>
