@@ -15,7 +15,7 @@ export const LINKS = {
     'https://github.com/DeborahUdochukwu48/apple-notes-transcribe',
   transcribeCase:
     'https://medium.com/@deborahprecious48/closing-the-gap-bringing-file-based-transcription-to-apple-notes-bc157cffe720',
-  cv: '/CV_Deborah_Amajuoyi.docx',
+  cv: '/CV_Deborah_Amajuoyi_Product_Manager.pdf',
 }
 
 export const COMPETENCIES = [

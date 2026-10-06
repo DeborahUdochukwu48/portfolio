@@ -184,7 +184,7 @@ function Navbar() {
         </HoverLink>
         <HoverLink
           href={LINKS.cv}
-          download="CV_Deborah_Amajuoyi.docx"
+          download="CV_Deborah_Amajuoyi_Product_Manager.pdf"
           onClick={() => setOpen(false)}
         >
           CV
