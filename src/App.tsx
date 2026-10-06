@@ -210,7 +210,7 @@ function Navbar() {
   )
 }
 
-const HERO_ROTATING = ['Thinks in System', 'Ships', 'Builds'] as const
+const HERO_ROTATING = ['Plans', 'Designs', 'Builds', 'Ships'] as const
 
 function HeroTitle() {
   const reduce = useReducedMotion()
@@ -234,7 +234,7 @@ function HeroTitle() {
 
   return (
     <motion.h1
-      aria-label="Senior Product Manager who Thinks in System, Ships, Builds."
+      aria-label="Senior Product Manager who Plans, Designs, Builds, Ships."
       initial={enter ? 'hidden' : false}
       animate="show"
       variants={enter}
