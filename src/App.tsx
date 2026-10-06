@@ -210,61 +210,57 @@ function Navbar() {
   )
 }
 
-const HERO_TITLE = [
-  ['Senior', 'Product', 'Manager'],
-  ['who', 'Builds.'],
-] as const
+const HERO_ROTATING = ['Thinks in System', 'Ships', 'Builds'] as const
 
 function HeroTitle() {
   const reduce = useReducedMotion()
-  const words = HERO_TITLE.flat()
-  const [active, setActive] = useState(words.length - 1)
+  const [active, setActive] = useState(HERO_ROTATING.length - 1)
 
   useEffect(() => {
     if (reduce) {
-      setActive(words.length - 1)
+      setActive(HERO_ROTATING.length - 1)
       return
     }
     setActive(0)
     const id = window.setInterval(() => {
-      setActive((index) => (index + 1) % words.length)
-    }, 1300)
+      setActive((index) => (index + 1) % HERO_ROTATING.length)
+    }, 2200)
     return () => window.clearInterval(id)
-  }, [reduce, words.length])
+  }, [reduce])
 
   const enter = reduce
     ? undefined
     : { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }
 
-  let wordIndex = 0
-
   return (
     <motion.h1
-      aria-label="Senior Product Manager who Builds."
+      aria-label="Senior Product Manager who Thinks in System, Ships, Builds."
       initial={enter ? 'hidden' : false}
       animate="show"
       variants={enter}
       transition={{ duration: 0.6, delay: 0.08, ease }}
     >
-      {HERO_TITLE.map((line) => (
-        <span key={line.join(' ')} className="hero-title-line">
-          {line.map((word) => {
-            const index = wordIndex
-            wordIndex += 1
-            return (
-              <motion.span
-                key={word}
-                className={active === index ? 'hero-word is-accent' : 'hero-word'}
-                initial={reduce ? false : { opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.45, delay: 0.1 + index * 0.08, ease }}
-              >
-                {word}
-              </motion.span>
-            )
-          })}
+      <span className="hero-title-line">Senior Product Manager</span>
+      <span className="hero-title-line">
+        who{' '}
+        <span className="hero-rotator" aria-live="polite">
+          {HERO_ROTATING.map((phrase, index) => (
+            <motion.span
+              key={phrase}
+              className="hero-rotator-item"
+              aria-hidden={index !== active}
+              initial={false}
+              animate={{
+                opacity: index === active ? 1 : 0,
+                y: reduce || index === active ? 0 : 18,
+              }}
+              transition={{ duration: reduce ? 0 : 0.45, ease }}
+            >
+              {phrase}.
+            </motion.span>
+          ))}
         </span>
-      ))}
+      </span>
     </motion.h1>
   )
 }
