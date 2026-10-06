@@ -214,7 +214,7 @@ const HERO_ROTATING = ['Plans.', 'Designs.', 'Builds.', 'Ships.'] as const
 
 function HeroTitle() {
   const reduce = useReducedMotion()
-  const [shown, setShown] = useState(HERO_ROTATING[HERO_ROTATING.length - 1])
+  const [shown, setShown] = useState<string>(HERO_ROTATING[HERO_ROTATING.length - 1])
 
   useEffect(() => {
     if (reduce) {
