@@ -272,22 +272,24 @@ function HeroTitle() {
 
   return (
     <motion.h1
-      aria-label="Senior Product Manager who Plans, Designs, Builds, Ships."
       initial={enter ? 'hidden' : false}
       animate="show"
       variants={enter}
       transition={{ duration: 0.6, delay: 0.08, ease }}
     >
-      <span className="hero-title-line">Senior Product Manager</span>
-      <span className="hero-title-line">
-        who{' '}
-        <span className="hero-rotator" aria-live="polite">
-          <span className="hero-rotator-sizer" aria-hidden>
-            Designs.
-          </span>
-          <span className="hero-rotator-live">
-            <span className="hero-rotator-text">{shown}</span>
-            {reduce ? null : <span className="hero-caret" aria-hidden />}
+      <span className="sr-only">
+        Senior Product Manager who plans, designs, builds and ships.
+      </span>
+      <span aria-hidden="true">
+        <span className="hero-title-line">Senior Product Manager</span>
+        <span className="hero-title-line">
+          who{' '}
+          <span className="hero-rotator">
+            <span className="hero-rotator-sizer">Designs.</span>
+            <span className="hero-rotator-live">
+              <span className="hero-rotator-text">{shown}</span>
+              {reduce ? null : <span className="hero-caret" />}
+            </span>
           </span>
         </span>
       </span>
