@@ -542,24 +542,27 @@ function Works() {
         <div className="work-copy">
           <p className="work-brand">
             <img src="/images/logo-evalspree.png" alt="" />
-            EvalSpree (Personal Project)
+            EvalSpree
           </p>
-          <h3>EvalSpree</h3>
+          <h3>AI evaluation tool</h3>
           <p>
-            Evals for PMs. Know when your AI feature is ready to ship. PMs already have the
-            judgment; EvalSpree turns it into a repeatable test. Mark a few answers good or bad,
-            draft criteria from those reasons, and make a named launch call.
+            Evals for product managers. You already know a good AI answer when you see one;
+            EvalSpree turns that judgment into a repeatable test. Label a few answers good or bad
+            with a one-line reason, turn those reasons into criteria, and finish with a
+            ship/no-ship call signed off by a named person.
           </p>
-          <p className="impact-label">Impact</p>
+          <p className="impact-label">What it does</p>
           <ul>
             <li>
-              Turns product judgment into a repeatable eval instead of a one-off gut check.
+              Turns a one-off gut check into a test you can rerun after every prompt change.
             </li>
             <li>
-              Trusts an AI judge only when it catches both good and bad answers at 80% or better.
+              Trusts an AI judge only once it matches your labels on at least 80% of both good and
+              bad answers.
             </li>
             <li>
-              Produces a ship/no-ship report with risk-based bars and a named human approval.
+              Ends with a ship/no-ship report, with stricter pass marks for riskier cases and a
+              named approver.
             </li>
           </ul>
           <motion.a
