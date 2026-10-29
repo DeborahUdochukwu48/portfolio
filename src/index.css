@@ -645,6 +645,10 @@ html[data-theme="light"] .nav.is-scrolled {
   align-items: stretch;
 }
 
+.work-card:has(.evalspree-frame) {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+}
+
 .work-copy {
   display: flex;
   flex-direction: column;
@@ -723,8 +727,10 @@ html[data-theme="light"] .nav.is-scrolled {
 
 .evalspree-frame {
   align-self: center;
+  justify-self: stretch;
   position: relative;
-  width: min(100%, 380px);
+  width: 100%;
+  max-width: 100%;
   height: auto;
   aspect-ratio: 1 / 1;
   border-radius: 24px;
@@ -1086,6 +1092,10 @@ html[data-theme="light"] .phones {
     padding: 28px 22px;
   }
 
+  .work-card:has(.evalspree-frame) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+  }
+
   .flow-outputs {
     max-width: 100%;
   }
@@ -1205,6 +1215,10 @@ html[data-theme="light"] .phones {
 
   .work-media {
     height: 300px;
+  }
+
+  .work-card:has(.evalspree-frame) {
+    grid-template-columns: 1fr;
   }
 
   .evalspree-frame {
