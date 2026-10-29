@@ -175,6 +175,14 @@ function Navbar() {
           LinkedIn
         </HoverLink>
         <HoverLink
+          href={LINKS.medium}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => setOpen(false)}
+        >
+          Medium
+        </HoverLink>
+        <HoverLink
           href={LINKS.github}
           target="_blank"
           rel="noreferrer"
