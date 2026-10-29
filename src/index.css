@@ -728,6 +728,8 @@ html[data-theme="light"] .nav.is-scrolled {
   aspect-ratio: 1 / 1;
 }
 
+.work-media.evalspree .phones.single .phone-frame img,
+.work-media.evalspree .phones.single .phone-frame video,
 .work-media.evalspree .phone-frame img,
 .work-media.evalspree .phone-frame video {
   transform: none;
