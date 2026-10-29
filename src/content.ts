@@ -57,21 +57,29 @@ export const GALLERY = [
     src: '/images/gallery-1.jpg',
     title: 'City Marathon',
     caption: 'Ran a marathon to support a good cause',
+    width: 3024,
+    height: 3673,
   },
   {
     src: '/images/gallery-4.png',
     title: 'Volkswagen',
     caption: 'After Workshop Team Lunch',
+    width: 3001,
+    height: 3024,
   },
   {
     src: '/images/gallery-3.png',
     title: 'Volkswagen',
     caption: 'PI (Program Increment) Planning',
+    width: 1288,
+    height: 1682,
   },
   {
     src: '/images/gallery-2.jpg',
     title: 'Cariad.se',
     caption: 'Product & Design Review',
+    width: 1023,
+    height: 1000,
   },
 ]
 
@@ -135,6 +143,8 @@ export const TESTIMONIALS = [
     quote:
       "I'm working with Deborah on the same team. I can describe her as a professional and talented person! It's a pleasure to work with you.",
     avatar: '/images/avatar-1.png',
+    avatarWidth: 500,
+    avatarHeight: 500,
     href: undefined as string | undefined,
   },
   {
@@ -143,6 +153,8 @@ export const TESTIMONIALS = [
     quote:
       'It has been a great privilege and fun working alongside Deborah on several of our projects at Fluidangle. Her work ethic and quality of work has been impressive from the very beginning.',
     avatar: '/images/avatar-2.png',
+    avatarWidth: 800,
+    avatarHeight: 800,
     href: undefined as string | undefined,
   },
   {
@@ -151,6 +163,8 @@ export const TESTIMONIALS = [
     quote:
       'I had great pleasure in interviewing and processing her profile, she is very talented and a hard-worker who manages to create beautiful things even with constraining briefs.',
     avatar: '/images/avatar-3.png',
+    avatarWidth: 720,
+    avatarHeight: 720,
     href: 'https://www.linkedin.com/in/ismet-baruah/',
   },
 ]

@@ -874,13 +874,13 @@ html[data-theme="light"] .phones {
   gap: 28px;
 }
 
-.impact-cols h4 {
+.impact-cols h3 {
   font-size: 13px;
   font-weight: 600;
   margin: 18px 0 12px;
 }
 
-.impact-cols > div > h4:first-child {
+.impact-cols > div > h3:first-child {
   margin-top: 0;
 }
 

@@ -315,7 +315,7 @@ function Hero() {
         variants={enter}
         transition={{ duration: 0.5, ease }}
       >
-        <img src="/images/logo-d.png" alt="" />
+        <img src="/images/logo-d.png" alt="" width={800} height={800} />
         <span>Amajuoyi Udochukwu Deborah</span>
       </motion.div>
       <HeroTitle />
@@ -392,10 +392,10 @@ function Hero() {
         <hr className="stats-divider" />
         <p className="companies-label">Shipped for</p>
         <div className="logo-row">
-          <img src="/images/logo-vw.png" alt="Volkswagen" />
-          <img src="/images/logo-seat.png" alt="SEAT" />
-          <img src="/images/logo-cupra.png" alt="CUPRA" />
-          <img src="/images/logo-skoda.png" alt="Škoda" />
+          <img src="/images/logo-vw.png" alt="Volkswagen" width={54} height={54} />
+          <img src="/images/logo-seat.png" alt="SEAT" width={88} height={70} />
+          <img src="/images/logo-cupra.png" alt="CUPRA" width={103} height={76} />
+          <img src="/images/logo-skoda.png" alt="Škoda" width={83} height={83} />
           <span className="plus" aria-hidden>
             +
           </span>
@@ -462,18 +462,67 @@ function PhoneFrame({
   src,
   alt,
   video = false,
+  poster,
+  width,
+  height,
 }: {
   src: string
   alt: string
   video?: boolean
+  poster?: string
+  width: number
+  height: number
 }) {
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const [shouldLoad, setShouldLoad] = useState(false)
+
+  useEffect(() => {
+    if (!video) return
+    const node = videoRef.current
+    if (!node) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.some((entry) => entry.isIntersecting)
+        if (visible) {
+          setShouldLoad(true)
+          node.play().catch(() => {})
+        } else {
+          node.pause()
+        }
+      },
+      { rootMargin: '200px 0px', threshold: 0.01 },
+    )
+    observer.observe(node)
+    return () => observer.disconnect()
+  }, [video])
+
+  useEffect(() => {
+    if (!video || !shouldLoad) return
+    const node = videoRef.current
+    if (!node) return
+    node.play().catch(() => {})
+  }, [video, shouldLoad])
+
   return (
     <div className="phone-frame">
       {video ? (
-          <video src={src} autoPlay muted loop playsInline aria-label={alt} />
-        ) : (
-          <img src={src} alt={alt} />
-        )}
+        <video
+          ref={videoRef}
+          src={shouldLoad ? src : undefined}
+          poster={poster}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="none"
+          width={width}
+          height={height}
+          aria-label={alt}
+        />
+      ) : (
+        <img src={src} alt={alt} loading="lazy" width={width} height={height} />
+      )}
     </div>
   )
 }
@@ -489,7 +538,7 @@ function Works() {
       <MotionCard className="work-card">
         <div className="work-copy">
           <p className="work-brand">
-            <img src="/images/logo-notes.svg" alt="" />
+            <img src="/images/logo-notes.svg" alt="" loading="lazy" width={32} height={32} />
             Apple Notes (Personal Project)
           </p>
           <h3>Apple Notes Transcriber</h3>
@@ -535,6 +584,9 @@ function Works() {
               src="/images/work-transcribe.mp4"
               alt="Apple Notes Transcriber turning an audio file into a note"
               video
+              poster="/images/poster-transcribe.png"
+              width={1920}
+              height={1080}
             />
           </div>
         </div>
@@ -543,7 +595,13 @@ function Works() {
       <MotionCard className="work-card" delay={0.06}>
         <div className="work-copy">
           <p className="work-brand">
-            <img src="/images/logo-evalspree.png" alt="" />
+            <img
+              src="/images/logo-evalspree.png"
+              alt=""
+              loading="lazy"
+              width={1200}
+              height={1200}
+            />
             EvalSpree
           </p>
           <h3>AI evaluation tool</h3>
@@ -583,6 +641,9 @@ function Works() {
               src="/images/work-evalspree.mp4"
               alt="EvalSpree helping a product manager decide if an AI feature is ready to ship"
               video
+              poster="/images/poster-evalspree.png"
+              width={1080}
+              height={1080}
             />
           </div>
         </div>
@@ -591,7 +652,7 @@ function Works() {
       <MotionCard className="work-card" delay={0.08}>
         <div className="work-copy">
           <p className="work-brand">
-            <img src="/images/logo-vw.png" alt="" />
+            <img src="/images/logo-vw.png" alt="" loading="lazy" width={54} height={54} />
             Volkswagen AG
           </p>
           <h3>Vehicle Activation Service</h3>
@@ -618,7 +679,12 @@ function Works() {
         </div>
         <div className="work-media">
           <div className="phones single pair">
-            <PhoneFrame src="/images/work-vw.png" alt="VW Connect services and security PIN screens" />
+            <PhoneFrame
+              src="/images/work-vw.png"
+              alt="VW Connect services and security PIN screens"
+              width={918}
+              height={1024}
+            />
           </div>
         </div>
       </MotionCard>
@@ -626,7 +692,7 @@ function Works() {
       <MotionCard className="work-card" delay={0.1}>
         <div className="work-copy">
           <p className="work-brand">
-            <img src="/images/logo-skoda.png" alt="" />
+            <img src="/images/logo-skoda.png" alt="" loading="lazy" width={83} height={83} />
             My Škoda
           </p>
           <h3>Vehicle Onboarding &amp; User Activation</h3>
@@ -654,6 +720,8 @@ function Works() {
             <PhoneFrame
               src="/images/work-skoda.png"
               alt="ŠKODA Connect activation and service packages screens"
+              width={918}
+              height={1024}
             />
           </div>
         </div>
@@ -662,7 +730,14 @@ function Works() {
       <MotionCard className="work-card" delay={0.12}>
         <div className="work-copy">
           <p className="work-brand">
-            <img className="wordmark" src="/images/logo-reversal.png" alt="" />
+            <img
+              className="wordmark"
+              src="/images/logo-reversal.png"
+              alt=""
+              loading="lazy"
+              width={496}
+              height={112}
+            />
             Reversal
           </p>
           <h3 className="reversal-title">
@@ -686,7 +761,14 @@ function Works() {
         </div>
         <div className="work-media purple">
           <div className="phones single">
-            <PhoneFrame src="/images/reversal.mp4" alt="Reversal scanning interface" video />
+            <PhoneFrame
+              src="/images/reversal.mp4"
+              alt="Reversal scanning interface"
+              video
+              poster="/images/poster-reversal.png"
+              width={738}
+              height={720}
+            />
           </div>
         </div>
       </MotionCard>
@@ -694,7 +776,14 @@ function Works() {
       <MotionCard className="work-card" delay={0.14}>
         <div className="work-copy">
           <p className="work-brand">
-            <img className="wordmark kladot" src="/images/logo-kladot.png" alt="" />
+            <img
+              className="wordmark kladot"
+              src="/images/logo-kladot.png"
+              alt=""
+              loading="lazy"
+              width={540}
+              height={130}
+            />
             Kladot
           </p>
           <h3>Kladot - A Digital Banking Platform</h3>
@@ -716,13 +805,24 @@ function Works() {
         </div>
         <div className="work-media">
           <div className="phones single">
-            <PhoneFrame src="/images/kladot-collage.png" alt="Kladot app screens" />
+            <PhoneFrame
+              src="/images/kladot-collage.png"
+              alt="Kladot digital banking app screens"
+              width={5760}
+              height={4096}
+            />
           </div>
         </div>
       </MotionCard>
 
       <Reveal>
-        <a className="see-more" href={LINKS.medium} target="_blank" rel="noreferrer">
+        <a
+          className="see-more"
+          href={LINKS.medium}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="See more writing on Medium"
+        >
           See More
         </a>
       </Reveal>
@@ -754,7 +854,13 @@ function About() {
             transition={{ duration: 0.5, delay: index * 0.07, ease }}
             whileHover={reduce ? undefined : { y: -6 }}
           >
-            <img src={item.src} alt={item.caption} />
+            <img
+              src={item.src}
+              alt={`${item.title}: ${item.caption}`}
+              loading="lazy"
+              width={item.width}
+              height={item.height}
+            />
             <figcaption>
               <strong>{item.title}</strong>
               <span>{item.caption}</span>
@@ -809,7 +915,7 @@ function Impact() {
         </div>
         <div className="impact-cols">
           <div>
-            <h4>Experience</h4>
+            <h3>Experience</h3>
             {EXPERIENCE.map((job) => (
               <div key={job.role + job.dates} className="resume-item">
                 <strong>{job.company}</strong>
@@ -822,7 +928,7 @@ function Impact() {
             ))}
           </div>
           <div>
-            <h4>Education</h4>
+            <h3>Education</h3>
             {EDUCATION.map((ed) => (
               <div key={ed.school} className="resume-item">
                 <strong>{ed.school}</strong>
@@ -833,7 +939,7 @@ function Impact() {
                 </span>
               </div>
             ))}
-            <h4>Languages</h4>
+            <h3>Languages</h3>
             <p className="plain-list">
               English
               <br />
@@ -841,7 +947,7 @@ function Impact() {
               <br />
               German
             </p>
-            <h4>Writing</h4>
+            <h3>Writing</h3>
             <p className="writing">
               write on product design, PM, and process across{' '}
               <a href={LINKS.linkedin} target="_blank" rel="noreferrer">
@@ -859,7 +965,7 @@ function Impact() {
             </p>
           </div>
           <div>
-            <h4>Community, Speaking, &amp; Mentorship</h4>
+            <h3>Community, Speaking, &amp; Mentorship</h3>
             {COMMUNITY.map((item) => (
               <div key={item.org} className="resume-item">
                 <strong>{item.org}</strong>
@@ -891,7 +997,13 @@ function Testimonials() {
           return (
             <MotionCard key={item.name} className="quote-card" delay={index * 0.08}>
               <header>
-                <img src={item.avatar} alt="" />
+                <img
+                  src={item.avatar}
+                  alt=""
+                  loading="lazy"
+                  width={item.avatarWidth}
+                  height={item.avatarHeight}
+                />
                 <div>
                   <strong>{name}</strong>
                   <span>{item.role}</span>
