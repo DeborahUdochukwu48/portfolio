@@ -806,7 +806,7 @@ function Works() {
         <div className="work-media">
           <div className="phones single">
             <PhoneFrame
-              src="/images/kladot-collage.png"
+              src="/images/kladot-collage.webp"
               alt="Kladot digital banking app screens"
               width={5760}
               height={4096}

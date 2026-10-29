@@ -54,21 +54,21 @@ export const COMPETENCIES = [
 
 export const GALLERY = [
   {
-    src: '/images/gallery-1.jpg',
+    src: '/images/gallery-1.webp',
     title: 'City Marathon',
     caption: 'Ran a marathon to support a good cause',
     width: 3024,
     height: 3673,
   },
   {
-    src: '/images/gallery-4.png',
+    src: '/images/gallery-4.webp',
     title: 'Volkswagen',
     caption: 'After Workshop Team Lunch',
     width: 3001,
     height: 3024,
   },
   {
-    src: '/images/gallery-3.png',
+    src: '/images/gallery-3.webp',
     title: 'Volkswagen',
     caption: 'PI (Program Increment) Planning',
     width: 1288,
