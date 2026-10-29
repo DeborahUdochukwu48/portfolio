@@ -541,6 +541,51 @@ function Works() {
       <MotionCard className="work-card" delay={0.06}>
         <div className="work-copy">
           <p className="work-brand">
+            <img src="/images/logo-evalspree.png" alt="" />
+            EvalSpree (Personal Project)
+          </p>
+          <h3>EvalSpree</h3>
+          <p>
+            Evals for PMs. Know when your AI feature is ready to ship. PMs already have the
+            judgment; EvalSpree turns it into a repeatable test. Mark a few answers good or bad,
+            draft criteria from those reasons, and make a named launch call.
+          </p>
+          <p className="impact-label">Impact</p>
+          <ul>
+            <li>
+              Turns product judgment into a repeatable eval instead of a one-off gut check.
+            </li>
+            <li>
+              Trusts an AI judge only when it catches both good and bad answers at 80% or better.
+            </li>
+            <li>
+              Produces a ship/no-ship report with risk-based bars and a named human approval.
+            </li>
+          </ul>
+          <motion.a
+            className="btn-ghost"
+            href={LINKS.evalspree}
+            target="_blank"
+            rel="noreferrer"
+            whileHover={reduce ? undefined : { scale: 1.04 }}
+          >
+            View Live <ArrowOut />
+          </motion.a>
+        </div>
+        <div className="work-media purple">
+          <div className="phones single">
+            <PhoneFrame
+              src="/images/work-evalspree.mp4"
+              alt="EvalSpree helping a product manager decide if an AI feature is ready to ship"
+              video
+            />
+          </div>
+        </div>
+      </MotionCard>
+
+      <MotionCard className="work-card" delay={0.08}>
+        <div className="work-copy">
+          <p className="work-brand">
             <img src="/images/logo-vw.png" alt="" />
             Volkswagen AG
           </p>
@@ -573,7 +618,7 @@ function Works() {
         </div>
       </MotionCard>
 
-      <MotionCard className="work-card" delay={0.08}>
+      <MotionCard className="work-card" delay={0.1}>
         <div className="work-copy">
           <p className="work-brand">
             <img src="/images/logo-skoda.png" alt="" />
@@ -609,7 +654,7 @@ function Works() {
         </div>
       </MotionCard>
 
-      <MotionCard className="work-card" delay={0.1}>
+      <MotionCard className="work-card" delay={0.12}>
         <div className="work-copy">
           <p className="work-brand">
             <img className="wordmark" src="/images/logo-reversal.png" alt="" />
@@ -641,7 +686,7 @@ function Works() {
         </div>
       </MotionCard>
 
-      <MotionCard className="work-card" delay={0.12}>
+      <MotionCard className="work-card" delay={0.14}>
         <div className="work-copy">
           <p className="work-brand">
             <img className="wordmark kladot" src="/images/logo-kladot.png" alt="" />
