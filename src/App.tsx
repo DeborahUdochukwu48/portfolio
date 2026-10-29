@@ -635,13 +635,13 @@ function Works() {
             View Live <ArrowOut />
           </motion.a>
         </div>
-        <div className="work-media purple">
+        <div className="work-media purple evalspree">
           <div className="phones single">
             <PhoneFrame
               src="/images/work-evalspree.mp4"
               alt="EvalSpree helping a product manager decide if an AI feature is ready to ship"
               video
-              poster="/images/poster-evalspree.webp"
+              poster="/images/work-evalspree-poster.webp"
               width={1080}
               height={1080}
             />
