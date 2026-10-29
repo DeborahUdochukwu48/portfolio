@@ -458,6 +458,57 @@ function Competencies() {
   )
 }
 
+function EvalSpreeFrame() {
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const [shouldLoad, setShouldLoad] = useState(false)
+
+  useEffect(() => {
+    const node = videoRef.current
+    if (!node) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.some((entry) => entry.isIntersecting)
+        if (visible) {
+          setShouldLoad(true)
+          node.play().catch(() => {})
+        } else {
+          node.pause()
+        }
+      },
+      { rootMargin: '200px 0px', threshold: 0.01 },
+    )
+    observer.observe(node)
+    return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
+    if (!shouldLoad) return
+    const node = videoRef.current
+    if (!node) return
+    node.play().catch(() => {})
+  }, [shouldLoad])
+
+  return (
+    <div className="evalspree-frame">
+      <video
+        ref={videoRef}
+        className="evalspree-video"
+        src={shouldLoad ? '/images/work-evalspree.mp4' : undefined}
+        poster="/images/work-evalspree-poster.webp"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="none"
+        width={1080}
+        height={1080}
+        aria-label="EvalSpree helping a product manager decide if an AI feature is ready to ship"
+      />
+    </div>
+  )
+}
+
 function PhoneFrame({
   src,
   alt,
@@ -635,18 +686,7 @@ function Works() {
             View Live <ArrowOut />
           </motion.a>
         </div>
-        <div className="work-media purple evalspree">
-          <div className="phones single">
-            <PhoneFrame
-              src="/images/work-evalspree.mp4"
-              alt="EvalSpree helping a product manager decide if an AI feature is ready to ship"
-              video
-              poster="/images/work-evalspree-poster.webp"
-              width={1080}
-              height={1080}
-            />
-          </div>
-        </div>
+        <EvalSpreeFrame />
       </MotionCard>
 
       <MotionCard className="work-card" delay={0.08}>
