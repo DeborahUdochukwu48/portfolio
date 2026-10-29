@@ -315,7 +315,7 @@ function Hero() {
         variants={enter}
         transition={{ duration: 0.5, ease }}
       >
-        <img src="/images/logo-d.png" alt="" width={800} height={800} />
+        <img src="/images/logo-d.webp" alt="" width={56} height={56} />
         <span>Amajuoyi Udochukwu Deborah</span>
       </motion.div>
       <HeroTitle />
@@ -392,10 +392,10 @@ function Hero() {
         <hr className="stats-divider" />
         <p className="companies-label">Shipped for</p>
         <div className="logo-row">
-          <img src="/images/logo-vw.png" alt="Volkswagen" width={54} height={54} />
-          <img src="/images/logo-seat.png" alt="SEAT" width={88} height={70} />
-          <img src="/images/logo-cupra.png" alt="CUPRA" width={103} height={76} />
-          <img src="/images/logo-skoda.png" alt="Škoda" width={83} height={83} />
+          <img src="/images/logo-vw.webp" alt="Volkswagen" width={54} height={54} />
+          <img src="/images/logo-seat.webp" alt="SEAT" width={70} height={56} />
+          <img src="/images/logo-cupra.webp" alt="CUPRA" width={76} height={56} />
+          <img src="/images/logo-skoda.webp" alt="Škoda" width={56} height={56} />
           <span className="plus" aria-hidden>
             +
           </span>
@@ -584,7 +584,7 @@ function Works() {
               src="/images/work-transcribe.mp4"
               alt="Apple Notes Transcriber turning an audio file into a note"
               video
-              poster="/images/poster-transcribe.png"
+              poster="/images/poster-transcribe.webp"
               width={1920}
               height={1080}
             />
@@ -596,11 +596,11 @@ function Works() {
         <div className="work-copy">
           <p className="work-brand">
             <img
-              src="/images/logo-evalspree.png"
+              src="/images/logo-evalspree.webp"
               alt=""
               loading="lazy"
-              width={1200}
-              height={1200}
+              width={44}
+              height={44}
             />
             EvalSpree
           </p>
@@ -641,7 +641,7 @@ function Works() {
               src="/images/work-evalspree.mp4"
               alt="EvalSpree helping a product manager decide if an AI feature is ready to ship"
               video
-              poster="/images/poster-evalspree.png"
+              poster="/images/poster-evalspree.webp"
               width={1080}
               height={1080}
             />
@@ -652,7 +652,7 @@ function Works() {
       <MotionCard className="work-card" delay={0.08}>
         <div className="work-copy">
           <p className="work-brand">
-            <img src="/images/logo-vw.png" alt="" loading="lazy" width={54} height={54} />
+            <img src="/images/logo-vw.webp" alt="" loading="lazy" width={54} height={54} />
             Volkswagen AG
           </p>
           <h3>Vehicle Activation Service</h3>
@@ -680,7 +680,7 @@ function Works() {
         <div className="work-media">
           <div className="phones single pair">
             <PhoneFrame
-              src="/images/work-vw.png"
+              src="/images/work-vw.webp"
               alt="VW Connect services and security PIN screens"
               width={918}
               height={1024}
@@ -692,7 +692,7 @@ function Works() {
       <MotionCard className="work-card" delay={0.1}>
         <div className="work-copy">
           <p className="work-brand">
-            <img src="/images/logo-skoda.png" alt="" loading="lazy" width={83} height={83} />
+            <img src="/images/logo-skoda.webp" alt="" loading="lazy" width={56} height={56} />
             My Škoda
           </p>
           <h3>Vehicle Onboarding &amp; User Activation</h3>
@@ -718,7 +718,7 @@ function Works() {
         <div className="work-media teal">
           <div className="phones single pair">
             <PhoneFrame
-              src="/images/work-skoda.png"
+              src="/images/work-skoda.webp"
               alt="ŠKODA Connect activation and service packages screens"
               width={918}
               height={1024}
@@ -732,11 +732,11 @@ function Works() {
           <p className="work-brand">
             <img
               className="wordmark"
-              src="/images/logo-reversal.png"
+              src="/images/logo-reversal.webp"
               alt=""
               loading="lazy"
-              width={496}
-              height={112}
+              width={248}
+              height={56}
             />
             Reversal
           </p>
@@ -765,7 +765,7 @@ function Works() {
               src="/images/reversal.mp4"
               alt="Reversal scanning interface"
               video
-              poster="/images/poster-reversal.png"
+              poster="/images/poster-reversal.webp"
               width={738}
               height={720}
             />
@@ -778,11 +778,11 @@ function Works() {
           <p className="work-brand">
             <img
               className="wordmark kladot"
-              src="/images/logo-kladot.png"
+              src="/images/logo-kladot.webp"
               alt=""
               loading="lazy"
-              width={540}
-              height={130}
+              width={282}
+              height={68}
             />
             Kladot
           </p>
@@ -808,8 +808,8 @@ function Works() {
             <PhoneFrame
               src="/images/kladot-collage.webp"
               alt="Kladot digital banking app screens"
-              width={5760}
-              height={4096}
+              width={1256}
+              height={893}
             />
           </div>
         </div>
