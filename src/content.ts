@@ -16,7 +16,7 @@ export const LINKS = {
   transcribeCase:
     'https://medium.com/@deborahprecious48/closing-the-gap-bringing-file-based-transcription-to-apple-notes-bc157cffe720',
   evalspree: 'https://evalspree.com',
-  cv: '/CV_Deborah_Amajuoyi_Product_Manager.pdf',
+  cv: '/CV_Amajuoyi_Udochukwu_Deborah_Senior_Product_Manager.pdf',
 }
 
 export const COMPETENCIES = [
