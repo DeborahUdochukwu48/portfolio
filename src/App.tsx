@@ -150,7 +150,7 @@ function Navbar() {
   return (
     <header className={scrolled ? 'nav is-scrolled' : 'nav'}>
       <div className="nav-bar">
-      <a className="brand" href="#hero" onClick={() => setOpen(false)}>
+      <a className="brand" href="/#hero" onClick={() => setOpen(false)}>
         <BrandMark />
         Deborah
       </a>
@@ -160,10 +160,10 @@ function Navbar() {
         className={open ? 'nav-links is-open' : 'nav-links'}
         aria-label="Primary"
       >
-        <HoverLink href="#projects" onClick={() => setOpen(false)}>
+        <HoverLink href="/#projects" onClick={() => setOpen(false)}>
           Work
         </HoverLink>
-        <HoverLink href="#about" onClick={() => setOpen(false)}>
+        <HoverLink href="/#about" onClick={() => setOpen(false)}>
           About me
         </HoverLink>
         <HoverLink
@@ -346,7 +346,7 @@ function Hero() {
       >
         <motion.a
           className="btn-glow"
-          href="#projects"
+          href="/#projects"
           whileHover={reduce ? undefined : { scale: 1.04 }}
           whileTap={reduce ? undefined : { scale: 0.98 }}
         >
