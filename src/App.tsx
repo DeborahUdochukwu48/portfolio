@@ -192,7 +192,7 @@ function Navbar() {
         </HoverLink>
         <HoverLink
           href={LINKS.cv}
-          download="CV_Amajuoyi_Udochukwu_Deborah_Senior_Product_Manager.pdf"
+          download="CV_Amajuoyi_Udochukwu_Deborah_Senior_Product_Designer_and_Product_Manager.pdf"
           onClick={() => setOpen(false)}
         >
           CV
@@ -218,7 +218,7 @@ function Navbar() {
   )
 }
 
-const HERO_ROTATING = ['Plans.', 'Designs.', 'Builds.', 'Ships.'] as const
+const HERO_ROTATING = ['Plans.', 'Builds.', 'Tests.', 'Ships.'] as const
 
 function HeroTitle() {
   const reduce = useReducedMotion()
@@ -286,14 +286,14 @@ function HeroTitle() {
       transition={{ duration: 0.6, delay: 0.08, ease }}
     >
       <span className="sr-only">
-        Senior Product Manager who plans, designs, builds and ships.
+        Senior Product Designer who plans, builds, tests and ships.
       </span>
       <span aria-hidden="true">
-        <span className="hero-title-line">Senior Product Manager</span>
+        <span className="hero-title-line">Senior Product Designer</span>
         <span className="hero-title-line">
           who{' '}
           <span className="hero-rotator">
-            <span className="hero-rotator-sizer">Designs.</span>
+            <span className="hero-rotator-sizer">Builds.</span>
             <span className="hero-rotator-live">
               <span className="hero-rotator-text">{shown}</span>
               {reduce ? null : <span className="hero-caret" />}
@@ -334,8 +334,8 @@ function Hero() {
         variants={enter}
         transition={{ duration: 0.55, delay: 0.16, ease }}
       >
-        Hi, I&apos;m Deborah, a senior product manager with a strong design background. I set the
-        product strategy, shape the experience, and take it from first sketch to shipped product.
+        Hi, I&apos;m Deborah, a senior product designer and product manager. I shape how products
+        work and feel, I set the strategy behind them, and I take them from first sketch to shipped.
       </motion.p>
       <motion.div
         className="hero-actions"
@@ -429,7 +429,7 @@ function Strategy() {
         <Reveal>
           <h2>How I Work: From Problem to Shipped Product</h2>
           <p>
-            I&apos;m a senior product manager with a strong design background, and it shapes how I
+            I&apos;m a senior product designer and product manager, and that shapes how I
             work. I start with the user&apos;s problem, prototype early in Figma or with AI-assisted
             tools, and test before anything gets expensive to build.
           </p>
@@ -885,7 +885,7 @@ function About() {
       <Reveal>
         <h2>Amajuoyi Udochukwu Deborah</h2>
         <p className="about-bio">
-          Hi, I&apos;m Deborah, a senior product manager with a strong design background. I love
+          Hi, I&apos;m Deborah, a senior product designer and product manager. I love
           turning messy business problems and technical constraints into products people actually
           want to use, across B2C, B2B, D2C, and platform, including AI tools I build myself. I make
           decisions with research and data, not gut feel, and when I&apos;m not shipping, you&apos;ll
@@ -997,7 +997,7 @@ function Impact() {
             </p>
             <h3>Writing</h3>
             <p className="writing">
-              write on product design, PM, and process across{' '}
+              I write on product design, PM, and process across{' '}
               <a href={LINKS.linkedin} target="_blank" rel="noreferrer">
                 LinkedIn
               </a>

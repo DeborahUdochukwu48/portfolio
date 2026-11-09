@@ -16,10 +16,15 @@ export const LINKS = {
   transcribeCase:
     'https://medium.com/@deborahprecious48/closing-the-gap-bringing-file-based-transcription-to-apple-notes-bc157cffe720',
   evalspree: 'https://evalspree.com',
-  cv: '/CV_Amajuoyi_Udochukwu_Deborah_Senior_Product_Manager.pdf',
+  cv: '/CV_Amajuoyi_Udochukwu_Deborah_Senior_Product_Designer_and_Product_Manager.pdf',
 }
 
 export const COMPETENCIES = [
+  {
+    title: 'Design and customer',
+    body: 'Product and UI/UX design, design systems, accessibility, prototyping, customer-centric design.',
+    icon: 'cube',
+  },
   {
     title: 'AI Frameworks and Applications',
     body: 'Prompt engineering & eval design, RAG & fine-tuning, model selection (latency/cost/quality tradeoffs), vibe coding, workflow automation. Built and shipped: Apple Notes Transcriber →',
@@ -29,11 +34,6 @@ export const COMPETENCIES = [
     title: 'Strategy and vision',
     body: 'Product strategy, roadmap development, product-market fit, market sizing, market opportunity discovery, growth strategy, commercial awareness.',
     icon: 'target',
-  },
-  {
-    title: 'Design and customer',
-    body: 'Product and UI/UX design, customer-centric design.',
-    icon: 'cube',
   },
   {
     title: 'Execution and delivery',
@@ -86,13 +86,13 @@ export const GALLERY = [
 export const EXPERIENCE = [
   {
     company: 'Cariad (Volkswagen Group Company)',
-    role: 'Senior Product Manager',
+    role: 'Senior Product Designer and Product Manager',
     dates: 'September 2025 – Present',
     location: 'Germany',
   },
   {
     company: 'Cariad (Volkswagen Group Company)',
-    role: 'Lead Product Designer (VAS)',
+    role: 'Senior Product Designer (VAS)',
     dates: 'September 2023 – September 2025',
     location: 'Germany',
   },
@@ -104,7 +104,7 @@ export const EXPERIENCE = [
   },
   {
     company: 'Fluidangle LLC',
-    role: 'Lead Product Designer',
+    role: 'Lead Product Designer & Product Manager',
     dates: 'January 2020 – February 2022',
     location: 'United States',
   },
