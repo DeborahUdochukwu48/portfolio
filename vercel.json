@@ -1,0 +1,113 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "portfolio-sandy-chi-34\\.vercel\\.app"
+        }
+      ],
+      "destination": "https://amajuoyideborah.com/",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "portfolio-sandy-chi-34\\.vercel\\.app"
+        }
+      ],
+      "destination": "https://amajuoyideborah.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/index.html/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/index.html%2F",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/index.html%2f",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/%2F",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/%2f",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/%2F/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/%2f/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/%2Findex.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/%2findex.html",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/",
+      "headers": [
+        {
+          "key": "Link",
+          "value": "<https://amajuoyideborah.com/>; rel=\"canonical\""
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": ".*\\.vercel\\.app"
+        }
+      ],
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    },
+    {
+      "source": "/CV_Amajuoyi_Udochukwu_Deborah_Senior_Product_Manager.pdf",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    }
+  ]
+}
