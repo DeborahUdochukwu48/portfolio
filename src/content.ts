@@ -19,7 +19,7 @@ export const LINKS = {
   vasCase: '/work/vehicle-activation-service',
   decmovieCase:
     'https://medium.com/@deborahprecious48/case-study-decmovie-app-for-users-to-decide-movie-to-see-on-cinema-a-ux-case-study-8ff9714c3f52',
-  cv: '/CV_Amajuoyi_Udochukwu_Deborah_Senior_Product_Designer_and_Product_Manager.pdf',
+  cv: '/CV_Amajuoyi_Udochukwu_Deborah_Senior_Product_Designer_and_Product_Manager%20(1).pdf',
 }
 
 export const COMPETENCIES = [
