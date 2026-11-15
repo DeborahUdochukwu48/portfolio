@@ -16,14 +16,30 @@ export const LINKS = {
   transcribeCase:
     'https://medium.com/@deborahprecious48/closing-the-gap-bringing-file-based-transcription-to-apple-notes-bc157cffe720',
   evalspree: 'https://evalspree.com',
+  vasCase: '/work/vehicle-activation-service',
   cv: '/CV_Amajuoyi_Udochukwu_Deborah_Senior_Product_Designer_and_Product_Manager.pdf',
 }
 
 export const COMPETENCIES = [
   {
-    title: 'Design and customer',
-    body: 'Product and UI/UX design, design systems, accessibility, prototyping, customer-centric design.',
+    title: 'Interaction and UI design',
+    body: 'Product and UI/UX design, end to end flows, prototyping in Figma, primary and guest user journeys.',
     icon: 'cube',
+  },
+  {
+    title: 'Design systems and accessibility',
+    body: 'Multi brand design systems, component standardisation, EU accessibility standards.',
+    icon: 'ring',
+  },
+  {
+    title: 'Research and testing',
+    body: 'User research, usability testing, customer centric design, data informed decisions.',
+    icon: 'chart',
+  },
+  {
+    title: 'Product management',
+    body: 'Product strategy and roadmaps, product market fit, agile delivery, stakeholder management.',
+    icon: 'target',
   },
   {
     title: 'AI Frameworks and Applications',
@@ -31,24 +47,9 @@ export const COMPETENCIES = [
     icon: 'phone',
   },
   {
-    title: 'Strategy and vision',
-    body: 'Product strategy, roadmap development, product-market fit, market sizing, market opportunity discovery, growth strategy, commercial awareness.',
-    icon: 'target',
-  },
-  {
-    title: 'Execution and delivery',
-    body: 'Product management, project management, product delivery, agile methodologies, resource management.',
+    title: 'Leadership and mentoring',
+    body: 'Cross functional leadership, mentoring designers and product managers, community and speaking.',
     icon: 'machine',
-  },
-  {
-    title: 'People and leadership',
-    body: 'Stakeholder management, cross-functional leadership, team collaboration, Agile.',
-    icon: 'ring',
-  },
-  {
-    title: 'Insight and analysis',
-    body: 'Data-driven decision making, problem solving & innovation, market analysis.',
-    icon: 'chart',
   },
 ] as const
 
