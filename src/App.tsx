@@ -726,6 +726,46 @@ function Works() {
 
       <MotionCard className="work-card" delay={0.1}>
         <div className="work-copy">
+          <p className="work-brand">DeCMovie (UX Case Study)</p>
+          <h3>DeCMovie - Helping Moviegoers Decide What to Watch</h3>
+          <p>
+            People often want to go to the cinema but can&apos;t decide which movie to see. I
+            designed an MVP app that helps them choose, taking it from research and personas through
+            user flows, wireframes and a Figma prototype to usability testing.
+          </p>
+          <p className="impact-label">What I did</p>
+          <ul>
+            <li>
+              Ran online research and user interviews, then used affinity mapping and personas to
+              find why people get stuck choosing a movie.
+            </li>
+            <li>Designed topic based recommendations so the app shows movies matched to each person&apos;s interests.</li>
+            <li>Took the flow from sketches to high fidelity screens, right through to picking a showtime and paying for tickets.</li>
+          </ul>
+          <motion.a
+            className="btn-ghost"
+            href={LINKS.decmovieCase}
+            target="_blank"
+            rel="noreferrer"
+            whileHover={reduce ? undefined : { scale: 1.04 }}
+          >
+            View Case Study <ArrowOut />
+          </motion.a>
+        </div>
+        <div className="work-media">
+          <div className="phones single">
+            <PhoneFrame
+              src="https://miro.medium.com/v2/resize:fit:1400/1*n-8c1_pSwzqqhqVYiDh7tg.jpeg"
+              alt="DeCMovie app screens: recommendations, showtimes and ticket checkout"
+              width={1353}
+              height={855}
+            />
+          </div>
+        </div>
+      </MotionCard>
+
+      <MotionCard className="work-card" delay={0.12}>
+        <div className="work-copy">
           <p className="work-brand">
             <img
               className="wordmark"
