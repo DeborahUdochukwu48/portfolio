@@ -219,7 +219,7 @@ function Navbar() {
   )
 }
 
-const HERO_ROTATING = ['Plans.', 'Builds.', 'Tests.', 'Ships.'] as const
+const HERO_ROTATING = ['Researches.', 'Designs.', 'Builds.', 'Prioritizes.', 'Ships.', 'Measures.'] as const
 
 function HeroTitle() {
   const reduce = useReducedMotion()
@@ -287,7 +287,7 @@ function HeroTitle() {
       transition={{ duration: 0.6, delay: 0.08, ease }}
     >
       <span className="sr-only">
-        Senior Product Designer who plans, builds, tests and ships.
+        Senior Product Designer who researches, designs, builds, prioritizes, ships and measures.
       </span>
       <span aria-hidden="true">
         <span className="hero-title-line">Senior Product Designer</span>
@@ -336,7 +336,7 @@ function Hero() {
         transition={{ duration: 0.55, delay: 0.16, ease }}
       >
         Hi, I&apos;m Deborah, a senior product designer who also owns product strategy and
-        delivery. I shape how products work and feel, and I take them from first sketch to shipped.
+        delivery. I shape how products work and feel, and I take them from first sketch to shipped. I design for what users need and what the business has to hit.
       </motion.p>
       <motion.div
         className="hero-actions"
