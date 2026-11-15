@@ -336,7 +336,7 @@ function Hero() {
         transition={{ duration: 0.55, delay: 0.16, ease }}
       >
         Hi, I&apos;m Deborah, a senior product designer who also owns product strategy and
-        delivery. I shape how products work and feel, and I take them from first sketch to shipped. I design for what users need and what the business has to hit.
+        delivery. I shape how products work and feel, and I take them from first sketch to shipped. I balance what users need with what the business needs to grow.
       </motion.p>
       <motion.div
         className="hero-actions"
