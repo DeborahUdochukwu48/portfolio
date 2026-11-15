@@ -15,6 +15,7 @@ import {
 } from './icons'
 import { MotionCard, Reveal } from './motion'
 import { SynergyMap } from './SynergyMap'
+import './case-study.css'
 import {
   COMMUNITY,
   COMPETENCIES,
@@ -334,8 +335,8 @@ function Hero() {
         variants={enter}
         transition={{ duration: 0.55, delay: 0.16, ease }}
       >
-        Hi, I&apos;m Deborah, a senior product designer and product manager. I shape how products
-        work and feel, I set the strategy behind them, and I take them from first sketch to shipped.
+        Hi, I&apos;m Deborah, a senior product designer who also owns product strategy and
+        delivery. I shape how products work and feel, and I take them from first sketch to shipped.
       </motion.p>
       <motion.div
         className="hero-actions"
@@ -375,9 +376,9 @@ function Hero() {
           <div className="stat-cell">
             <strong>4</strong>
             <span>
-              Product models: B2C, B2B,
+              Brands on one
               <br />
-              D2C &amp; platform
+              design system
             </span>
           </div>
           <div className="stat-cell">
@@ -429,8 +430,8 @@ function Strategy() {
         <Reveal>
           <h2>How I Work: From Problem to Shipped Product</h2>
           <p>
-            I&apos;m a senior product designer and product manager, and that shapes how I
-            work. I start with the user&apos;s problem, prototype early in Figma or with AI-assisted
+            I&apos;m a senior product designer who also owns product strategy, and that shapes
+            how I work. I start with the user&apos;s problem, prototype early in Figma or with AI-assisted
             tools, and test before anything gets expensive to build.
           </p>
           <p>
@@ -597,6 +598,231 @@ function Works() {
       <MotionCard className="work-card">
         <div className="work-copy">
           <p className="work-brand">
+            <img src="/images/logo-vw.webp" alt="" loading="lazy" width={54} height={54} />
+            Volkswagen AG
+          </p>
+          <h3>Vehicle Activation Service</h3>
+          <p>
+            Led design and delivery of the core enrollment experience across four VW Group brands,
+            simplifying vehicle onboarding and digital feature activation for primary and guest
+            users.
+          </p>
+          <p className="impact-label">Impact</p>
+          <ul>
+            <li>Significantly reduced time-to-value during initial vehicle activation.</li>
+            <li>Meaningfully decreased onboarding drop-off by simplifying the activation path.</li>
+            <li>Scaled across millions of model year 2020+ vehicles nationwide.</li>
+          </ul>
+          <div className="work-actions">
+            <motion.a
+              className="btn-glow"
+              href={LINKS.vasCase}
+              whileHover={reduce ? undefined : { scale: 1.04 }}
+            >
+              View Case Study <ArrowOut />
+            </motion.a>
+            <motion.a
+              className="btn-ghost"
+              href={LINKS.vwLive}
+              target="_blank"
+              rel="noreferrer"
+              whileHover={reduce ? undefined : { scale: 1.04 }}
+            >
+              View Live <ArrowOut />
+            </motion.a>
+          </div>
+        </div>
+        <div className="work-media">
+          <div className="phones single pair">
+            <PhoneFrame
+              src="/images/work-vw.webp"
+              alt="VW Connect services and security PIN screens"
+              width={918}
+              height={1024}
+            />
+          </div>
+        </div>
+      </MotionCard>
+
+      <MotionCard className="work-card" delay={0.06}>
+        <div className="work-copy">
+          <p className="work-brand">
+            <img
+              className="wordmark kladot"
+              src="/images/logo-kladot.webp"
+              alt=""
+              loading="lazy"
+              width={282}
+              height={68}
+            />
+            Kladot
+          </p>
+          <h3>Kladot - A Digital Banking Platform</h3>
+          <p>
+            I designed Kladot end to end: a mobile banking app that lets migrants, expatriates and
+            global citizens hold several currencies, save in groups, and send, receive and convert
+            money from their phone. I designed the core flows, from onboarding to moving money, so
+            complex financial tasks feel simple on a small screen.
+          </p>
+          <motion.a
+            className="btn-ghost"
+            href={LINKS.kladotCase}
+            target="_blank"
+            rel="noreferrer"
+            whileHover={reduce ? undefined : { scale: 1.04 }}
+          >
+            View Case Study <ArrowOut />
+          </motion.a>
+        </div>
+        <div className="work-media">
+          <div className="phones single">
+            <PhoneFrame
+              src="/images/kladot-collage.webp"
+              alt="Kladot digital banking app screens"
+              width={1256}
+              height={893}
+            />
+          </div>
+        </div>
+      </MotionCard>
+
+      <MotionCard className="work-card" delay={0.08}>
+        <div className="work-copy">
+          <p className="work-brand">
+            <img src="/images/logo-skoda.webp" alt="" loading="lazy" width={56} height={56} />
+            My Škoda
+          </p>
+          <h3>Vehicle Onboarding &amp; User Activation</h3>
+          <p>
+            A brand level deep dive inside the Vehicle Activation Service: how the shared activation
+            flow adapts to ŠKODA Connect, from choosing country and language through to ordering
+            service packages, without breaking the common design system.
+          </p>
+          <p className="impact-label">Impact</p>
+          <ul>
+            <li>Significantly improved first-run activation completion rates for new Škoda owners.</li>
+          </ul>
+          <motion.a
+            className="btn-ghost"
+            href={LINKS.skodaLive}
+            target="_blank"
+            rel="noreferrer"
+            whileHover={reduce ? undefined : { scale: 1.04 }}
+          >
+            View Live <ArrowOut />
+          </motion.a>
+        </div>
+        <div className="work-media teal">
+          <div className="phones single pair">
+            <PhoneFrame
+              src="/images/work-skoda.webp"
+              alt="ŠKODA Connect activation and service packages screens"
+              width={918}
+              height={1024}
+            />
+          </div>
+        </div>
+      </MotionCard>
+
+      <MotionCard className="work-card" delay={0.1}>
+        <div className="work-copy">
+          <p className="work-brand">
+            <img
+              className="wordmark"
+              src="/images/logo-reversal.webp"
+              alt=""
+              loading="lazy"
+              width={248}
+              height={56}
+            />
+            Reversal
+          </p>
+          <h3 className="reversal-title">
+            Reversal - An Autonomous Humanoid Aid Performing Physical Command Z Function In Your
+            Space.
+          </h3>
+          <p>
+            A home humanoid whose core value isn&apos;t doing chores for you, it&apos;s
+            reversibility. When something goes wrong (spilled, knocked over, left open, put in the
+            wrong place), it undoes it.
+          </p>
+          <motion.a
+            className="btn-ghost"
+            href={LINKS.reversalCase}
+            target="_blank"
+            rel="noreferrer"
+            whileHover={reduce ? undefined : { scale: 1.04 }}
+          >
+            View Case Study <ArrowOut />
+          </motion.a>
+        </div>
+        <div className="work-media purple">
+          <div className="phones single">
+            <PhoneFrame
+              src="/images/reversal.mp4"
+              alt="Reversal scanning interface"
+              video
+              poster="/images/poster-reversal.webp"
+              width={738}
+              height={720}
+            />
+          </div>
+        </div>
+      </MotionCard>
+
+      <Reveal>
+        <p className="works-divider">Things I build</p>
+      </Reveal>
+
+      <MotionCard className="work-card">
+        <div className="work-copy">
+          <p className="work-brand">
+            <img
+              src="/images/logo-evalspree.webp"
+              alt=""
+              loading="lazy"
+              width={44}
+              height={44}
+            />
+            EvalSpree
+          </p>
+          <h3>AI evaluation tool</h3>
+          <p>
+            Evals for product managers. You already know a good AI answer when you see one;
+            EvalSpree turns that judgment into a repeatable test. Label a few answers good or bad
+            with a one-line reason, turn those reasons into criteria, and finish with a
+            ship/no-ship call signed off by a named person.
+          </p>
+          <p className="impact-label">What it does</p>
+          <ul>
+            <li>
+              Turns a one-off gut check into a test you can rerun after every prompt change.
+            </li>
+            <li>
+              Trusts an AI judge only once it matches your labels on at least 80% of both good and
+              bad answers.
+            </li>
+            <li>
+              Ends with a ship/no-ship report, with stricter pass marks for riskier cases and a
+              named approver.
+            </li>
+          </ul>
+          <motion.a
+            className="btn-ghost"
+            href={LINKS.evalspree}
+            target="_blank"
+            rel="noreferrer"
+            whileHover={reduce ? undefined : { scale: 1.04 }}
+          >
+            View Live <ArrowOut />
+          </motion.a>
+        </div>
+        <EvalSpreeFrame />
+      </MotionCard>
+
+      <MotionCard className="work-card" delay={0.06}>
+        <div className="work-copy">
+          <p className="work-brand">
             <img src="/images/logo-notes.svg" alt="" loading="lazy" width={32} height={32} />
             Apple Notes (Personal Project)
           </p>
@@ -651,218 +877,6 @@ function Works() {
         </div>
       </MotionCard>
 
-      <MotionCard className="work-card" delay={0.06}>
-        <div className="work-copy">
-          <p className="work-brand">
-            <img
-              src="/images/logo-evalspree.webp"
-              alt=""
-              loading="lazy"
-              width={44}
-              height={44}
-            />
-            EvalSpree
-          </p>
-          <h3>AI evaluation tool</h3>
-          <p>
-            Evals for product managers. You already know a good AI answer when you see one;
-            EvalSpree turns that judgment into a repeatable test. Label a few answers good or bad
-            with a one-line reason, turn those reasons into criteria, and finish with a
-            ship/no-ship call signed off by a named person.
-          </p>
-          <p className="impact-label">What it does</p>
-          <ul>
-            <li>
-              Turns a one-off gut check into a test you can rerun after every prompt change.
-            </li>
-            <li>
-              Trusts an AI judge only once it matches your labels on at least 80% of both good and
-              bad answers.
-            </li>
-            <li>
-              Ends with a ship/no-ship report, with stricter pass marks for riskier cases and a
-              named approver.
-            </li>
-          </ul>
-          <motion.a
-            className="btn-ghost"
-            href={LINKS.evalspree}
-            target="_blank"
-            rel="noreferrer"
-            whileHover={reduce ? undefined : { scale: 1.04 }}
-          >
-            View Live <ArrowOut />
-          </motion.a>
-        </div>
-        <EvalSpreeFrame />
-      </MotionCard>
-
-      <MotionCard className="work-card" delay={0.08}>
-        <div className="work-copy">
-          <p className="work-brand">
-            <img src="/images/logo-vw.webp" alt="" loading="lazy" width={54} height={54} />
-            Volkswagen AG
-          </p>
-          <h3>Vehicle Activation Service</h3>
-          <p>
-            Led design and delivery of the core enrollment experience across four VW Group brands,
-            simplifying vehicle onboarding and digital feature activation for primary and guest
-            users.
-          </p>
-          <p className="impact-label">Impact</p>
-          <ul>
-            <li>Significantly reduced time-to-value during initial vehicle activation.</li>
-            <li>Meaningfully decreased onboarding drop-off by simplifying the activation path.</li>
-            <li>Scaled across millions of model year 2020+ vehicles nationwide.</li>
-          </ul>
-          <motion.a
-            className="btn-ghost"
-            href={LINKS.vwLive}
-            target="_blank"
-            rel="noreferrer"
-            whileHover={reduce ? undefined : { scale: 1.04 }}
-          >
-            View Live <ArrowOut />
-          </motion.a>
-        </div>
-        <div className="work-media">
-          <div className="phones single pair">
-            <PhoneFrame
-              src="/images/work-vw.webp"
-              alt="VW Connect services and security PIN screens"
-              width={918}
-              height={1024}
-            />
-          </div>
-        </div>
-      </MotionCard>
-
-      <MotionCard className="work-card" delay={0.1}>
-        <div className="work-copy">
-          <p className="work-brand">
-            <img src="/images/logo-skoda.webp" alt="" loading="lazy" width={56} height={56} />
-            My Škoda
-          </p>
-          <h3>Vehicle Onboarding &amp; User Activation</h3>
-          <p>
-            Redesigned the vehicle onboarding and activation flow: prototyping in Figma and
-            designing separate primary/guest user paths to eliminate friction from first-time
-            account setup.
-          </p>
-          <p className="impact-label">Impact</p>
-          <ul>
-            <li>Significantly improved first-run activation completion rates for new Škoda owners.</li>
-          </ul>
-          <motion.a
-            className="btn-ghost"
-            href={LINKS.skodaLive}
-            target="_blank"
-            rel="noreferrer"
-            whileHover={reduce ? undefined : { scale: 1.04 }}
-          >
-            View Live <ArrowOut />
-          </motion.a>
-        </div>
-        <div className="work-media teal">
-          <div className="phones single pair">
-            <PhoneFrame
-              src="/images/work-skoda.webp"
-              alt="ŠKODA Connect activation and service packages screens"
-              width={918}
-              height={1024}
-            />
-          </div>
-        </div>
-      </MotionCard>
-
-      <MotionCard className="work-card" delay={0.12}>
-        <div className="work-copy">
-          <p className="work-brand">
-            <img
-              className="wordmark"
-              src="/images/logo-reversal.webp"
-              alt=""
-              loading="lazy"
-              width={248}
-              height={56}
-            />
-            Reversal
-          </p>
-          <h3 className="reversal-title">
-            Reversal - An Autonomous Humanoid Aid Performing Physical Command Z Function In Your
-            Space.
-          </h3>
-          <p>
-            A home humanoid whose core value isn&apos;t doing chores for you, it&apos;s
-            reversibility. When something goes wrong (spilled, knocked over, left open, put in the
-            wrong place), it undoes it.
-          </p>
-          <motion.a
-            className="btn-ghost"
-            href={LINKS.reversalCase}
-            target="_blank"
-            rel="noreferrer"
-            whileHover={reduce ? undefined : { scale: 1.04 }}
-          >
-            View Case Study <ArrowOut />
-          </motion.a>
-        </div>
-        <div className="work-media purple">
-          <div className="phones single">
-            <PhoneFrame
-              src="/images/reversal.mp4"
-              alt="Reversal scanning interface"
-              video
-              poster="/images/poster-reversal.webp"
-              width={738}
-              height={720}
-            />
-          </div>
-        </div>
-      </MotionCard>
-
-      <MotionCard className="work-card" delay={0.14}>
-        <div className="work-copy">
-          <p className="work-brand">
-            <img
-              className="wordmark kladot"
-              src="/images/logo-kladot.webp"
-              alt=""
-              loading="lazy"
-              width={282}
-              height={68}
-            />
-            Kladot
-          </p>
-          <h3>Kladot - A Digital Banking Platform</h3>
-          <p>
-            Kladot is a digital banking platform that enables migrants, expatriates and global
-            citizens to access multi-currency, Group Savings, Send, Receive, Payment, Investment,
-            Loan, Debit Card and Convert cash instantly from their phone. KlaDot Inc. has already
-            acquired Money services business license in USA and Canada.
-          </p>
-          <motion.a
-            className="btn-ghost"
-            href={LINKS.kladotCase}
-            target="_blank"
-            rel="noreferrer"
-            whileHover={reduce ? undefined : { scale: 1.04 }}
-          >
-            View Case Study <ArrowOut />
-          </motion.a>
-        </div>
-        <div className="work-media">
-          <div className="phones single">
-            <PhoneFrame
-              src="/images/kladot-collage.webp"
-              alt="Kladot digital banking app screens"
-              width={1256}
-              height={893}
-            />
-          </div>
-        </div>
-      </MotionCard>
-
       <Reveal>
         <a
           className="see-more"
@@ -885,7 +899,7 @@ function About() {
       <Reveal>
         <h2>Amajuoyi Udochukwu Deborah</h2>
         <p className="about-bio">
-          Hi, I&apos;m Deborah, a senior product designer and product manager. I love
+          Hi, I&apos;m Deborah, a senior product designer who also owns product strategy. I love
           turning messy business problems and technical constraints into products people actually
           want to use, across B2C, B2B, D2C, and platform, including AI tools I build myself. I make
           decisions with research and data, not gut feel, and when I&apos;m not shipping, you&apos;ll
@@ -1148,7 +1162,241 @@ function ScrollRail() {
   )
 }
 
+function VasCaseStudy() {
+  useEffect(() => {
+    const previous = document.title
+    document.title = 'Vehicle Activation Service case study | Amajuoyi Udochukwu Deborah'
+    const canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]')
+    const previousCanonical = canonical?.href
+    if (canonical) canonical.href = 'https://amajuoyideborah.com/work/vehicle-activation-service'
+    window.scrollTo(0, 0)
+    return () => {
+      document.title = previous
+      if (canonical && previousCanonical) canonical.href = previousCanonical
+    }
+  }, [])
+
+  return (
+    <article className="case">
+      <header className="case-hero">
+        <Reveal>
+          <a className="case-back" href="/#projects">
+            ← Back to work
+          </a>
+          <p className="work-brand">
+            <img src="/images/logo-vw.webp" alt="" width={54} height={54} />
+            Volkswagen Group
+          </p>
+          <h1>Vehicle Activation Service</h1>
+          <p className="case-sub">One activation experience for four car brands</p>
+        </Reveal>
+        <Reveal className="case-meta" delay={0.08}>
+          <div>
+            <span>Company</span>
+            <strong>Volkswagen Group (Hexad GmbH, then CARIAD)</strong>
+          </div>
+          <div>
+            <span>My role</span>
+            <strong>Lead Product Designer, then Senior Product Designer</strong>
+          </div>
+          <div>
+            <span>Timeline</span>
+            <strong>2022 to 2025</strong>
+          </div>
+          <div>
+            <span>Brands</span>
+            <strong>Volkswagen, ŠKODA, SEAT, CUPRA</strong>
+          </div>
+          <div>
+            <span>Tools</span>
+            <strong>Figma, FigJam, Confluence, Design System 6</strong>
+          </div>
+        </Reveal>
+      </header>
+
+      <Reveal className="case-media">
+        <img src="/images/work-vw.webp" alt="VW activation: order services free of charge and create your security PIN screens" width={918} height={1024} />
+      </Reveal>
+
+      <section className="case-body">
+        <Reveal>
+          <h2>The problem</h2>
+          <p>
+            When someone buys a Volkswagen Group car from model year 2020 onward, its connected
+            services, from remote access to the mobile key, stay switched off until the owner
+            activates them. Activation is the moment the car becomes a connected product, and it was
+            where too many owners stalled.
+          </p>
+          <p>
+            The flow had to do a lot in a few screens: explain the value of the services, collect
+            legal consent, set up security, and work for two very different people. The{' '}
+            <strong>primary user</strong> owns the car and accepts the contract.{' '}
+            <strong>Guest users</strong>, such as a partner or family member, need access without
+            ownership. On top of that, four brands each wanted their own version.
+          </p>
+        </Reveal>
+
+        <Reveal>
+          <h2>My role</h2>
+          <p>
+            I led design for the core enrollment experience across all four brands: the flow
+            architecture, the primary and guest journeys, the UI and Figma prototypes, and the
+            design system work that let one experience serve four brands. I worked closely with
+            product owners, engineers and each brand&apos;s team.
+          </p>
+        </Reveal>
+
+        <Reveal>
+          <h2>Research and discovery</h2>
+          <p>
+            Before changing anything, I walked through the existing activation flow for each brand
+            side by side and mapped every step, screen and exit point. I reviewed where users
+            dropped out, went through feedback that reached product and support teams, and talked
+            with brand stakeholders and engineers about the issues they saw most often.
+          </p>
+          <p>Three patterns stood out:</p>
+          <ul>
+            <li>
+              <strong>Owners didn&apos;t see the value early enough.</strong> Setup and legal steps
+              came before people understood what they were unlocking.
+            </li>
+            <li>
+              <strong>Guests were treated like owners.</strong> Family members and partners were
+              pushed through contract and ordering steps that had nothing to do with them.
+            </li>
+            <li>
+              <strong>Security setup felt like a hurdle.</strong> The S-PIN step caused confusion
+              because its purpose and rules only became clear after an error.
+            </li>
+          </ul>
+        </Reveal>
+
+        <Reveal>
+          <h2>Design decisions</h2>
+          <h3>1. Separate paths for primary and guest users</h3>
+          <p>
+            One flow for everyone meant guests were pushed through steps that only make sense for an
+            owner. I split the journey in two. The primary path carries the contract, service
+            ordering and security setup. The guest path leaves those out and gets people into the
+            car&apos;s services faster.
+          </p>
+          <h3>2. Show the value before asking for commitment</h3>
+          <p>
+            The Order services screen leads with what the owner gets, VW Connect and VW Connect Plus
+            free of charge, before any setup begins. People are far more willing to complete setup
+            steps once they know what they unlock.
+          </p>
+          <h3>3. A security PIN people understand</h3>
+          <p>
+            The S-PIN protects the mobile key and other sensitive services, so it can&apos;t be
+            skipped. I designed the screen to explain why it exists and to show the rules, no
+            repeated or sequential digits, before the user types instead of after an error.
+          </p>
+          <h3>4. Context first, then consent</h3>
+          <p>
+            Available services, legal terms and language all depend on where the car is mainly
+            driven, so the flow asks for country and language first. Consent sits on that same
+            screen with direct links to the terms and privacy policy, so people agree once, with
+            context, instead of hitting a wall of legal screens.
+          </p>
+        </Reveal>
+      </section>
+
+      <Reveal className="case-media teal">
+        <img src="/images/work-skoda.webp" alt="ŠKODA Connect: country, language and consent screen, and order your service packages screen" width={918} height={1024} />
+      </Reveal>
+
+      <section className="case-body">
+        <Reveal>
+          <h2>Scaling across four brands</h2>
+          <p>
+            Each brand wanted its own features, and engineers worried that brand changes would
+            break the shared code. I brought all four brands onto <strong>Design System 6</strong>{' '}
+            and introduced a <strong>Generic Design System (GDS)</strong> process: every screen is
+            designed first as a white label version, and brand customisation starts only once that
+            shared screen is approved. With engineering, we agreed to split the code so a brand
+            specific feature affects only that brand, never the common structure.
+          </p>
+          <p>
+            At the same time, we brought the components in line with{' '}
+            <strong>EU accessibility standards</strong>, so every brand inherited that work instead
+            of each fixing it separately.
+          </p>
+        </Reveal>
+
+        <Reveal>
+          <h2>Testing and iteration</h2>
+          <p>
+            I built clickable Figma prototypes of the new primary and guest flows and tested them
+            before anything went to development. Testing sessions and reviews with product owners,
+            engineers and brand teams showed where people hesitated, especially around the S-PIN
+            rules and the consent step.
+          </p>
+          <p>
+            Each round fed straight back into the design: we moved the PIN rules above the input
+            field, tightened the wording on the service screen, and kept refining the guest path
+            until it carried only the steps a guest actually needs. Because every change was made
+            first in the white label version, each fix reached all four brands at once.
+          </p>
+        </Reveal>
+
+        <Reveal>
+          <h2>Outcome</h2>
+          <ul>
+            <li>Shorter time to value during first vehicle activation.</li>
+            <li>Fewer owners dropping out of onboarding after the activation path was simplified.</li>
+            <li>One shared flow running across millions of model year 2020+ vehicles for four brands.</li>
+            <li>Brands can add their own features without breaking the shared experience.</li>
+          </ul>
+        </Reveal>
+
+        <Reveal>
+          <h2>What I learned</h2>
+          <p>
+            In a multi brand product, the hardest design work is agreeing on what stays shared. A
+            white label first process turned debates about taste into a clear review step everyone
+            could follow, and it gave engineers a structure they could trust.
+          </p>
+        </Reveal>
+
+        <Reveal>
+          <h2>Where product management came in</h2>
+          <p>
+            Aligning four brands and engineering on the GDS process and the code split was as much
+            a product decision as a design one. I worked through competing brand requests with
+            stakeholders and agreed scope with engineering so the shared flow could ship.
+          </p>
+        </Reveal>
+
+        <Reveal className="case-end">
+          <a className="btn-glow" href="/#projects">
+            See more work
+          </a>
+          <a className="btn-ghost" href={LINKS.vwLive} target="_blank" rel="noreferrer">
+            View Live <ArrowOut />
+          </a>
+        </Reveal>
+      </section>
+    </article>
+  )
+}
+
 export default function App() {
+  const path = window.location.pathname.replace(/\/+$/, '')
+  if (path === LINKS.vasCase) {
+    return (
+      <div className="page">
+        <CursorFollower />
+        <Navbar />
+        <main>
+          <VasCaseStudy />
+        </main>
+        <Footer />
+        <ScrollRail />
+      </div>
+    )
+  }
+
   return (
     <div className="page">
       <CursorFollower />
