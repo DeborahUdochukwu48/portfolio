@@ -1,0 +1,118 @@
+.works-divider {
+  margin: 56px 0 20px;
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.works-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--divider);
+}
+
+.case {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 140px var(--page-pad) 80px;
+}
+.case-back {
+  display: inline-block;
+  margin-bottom: 28px;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+.case-back:hover {
+  color: var(--text);
+}
+.case-hero h1 {
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin: 12px 0 10px;
+}
+.case-sub {
+  font-size: 1.25rem;
+  color: var(--accent);
+  margin: 0 0 40px;
+}
+.case-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px 28px;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--card);
+}
+.case-meta span {
+  display: block;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.case-meta strong {
+  font-weight: 500;
+  line-height: 1.4;
+}
+.case-media {
+  display: flex;
+  justify-content: center;
+  gap: clamp(16px, 4vw, 48px);
+  margin: 56px 0;
+  padding: clamp(28px, 5vw, 56px);
+  border-radius: 28px;
+  background: var(--media-well);
+  border: 1px solid var(--line);
+}
+.case-media.teal {
+  background: linear-gradient(160deg, rgba(20, 120, 110, 0.18), var(--media-well) 60%);
+}
+.case-media img {
+  width: min(100%, 560px);
+  height: auto;
+  border-radius: 20px;
+}
+.case-body {
+  max-width: 760px;
+  margin: 0 auto;
+}
+.case-body h2 {
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  letter-spacing: -0.02em;
+  margin: 56px 0 16px;
+}
+.case-body h3 {
+  font-size: 1.2rem;
+  margin: 32px 0 10px;
+}
+.case-body p {
+  margin: 0 0 16px;
+}
+.case-body p,
+.case-body li {
+  color: var(--muted);
+  font-size: 1.08rem;
+  line-height: 1.7;
+}
+.case-body strong {
+  color: var(--text);
+}
+.case-body ul {
+  padding-left: 1.2em;
+  display: grid;
+  gap: 10px;
+}
+.case-end {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 64px;
+}
