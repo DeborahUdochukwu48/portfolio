@@ -116,3 +116,20 @@
   gap: 14px;
   margin-top: 64px;
 }
+
+/* Same size project cards on tablet and desktop */
+@media (min-width: 721px) {
+  .work-card,
+  .work-card:has(.evalspree-frame) {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    min-height: 620px;
+  }
+
+  .work-card > .work-media,
+  .work-card > .evalspree-frame {
+    height: auto;
+    min-height: 380px;
+    aspect-ratio: auto;
+    align-self: stretch;
+  }
+}
