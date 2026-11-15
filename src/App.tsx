@@ -735,12 +735,9 @@ function Works() {
           </p>
           <p className="impact-label">What I did</p>
           <ul>
-            <li>
-              Ran online research and user interviews, then used affinity mapping and personas to
-              find why people get stuck choosing a movie.
-            </li>
-            <li>Designed topic based recommendations so the app shows movies matched to each person&apos;s interests.</li>
-            <li>Took the flow from sketches to high fidelity screens, right through to picking a showtime and paying for tickets.</li>
+            <li>Used research, interviews and personas to find why choosing a movie is hard.</li>
+            <li>Designed topic based recommendations matched to each person&apos;s interests.</li>
+            <li>Took the flow from sketches to high fidelity screens, through to booking tickets.</li>
           </ul>
           <motion.a
             className="btn-ghost"
