@@ -89,7 +89,7 @@ export const GALLERY = [
 export const EXPERIENCE = [
   {
     company: 'Cariad (Volkswagen Group Company)',
-    role: 'Senior Product Designer and Product Manager',
+    role: 'Senior Product Designer & Product Manager',
     dates: 'September 2025 – Present',
     location: 'Germany',
   },
